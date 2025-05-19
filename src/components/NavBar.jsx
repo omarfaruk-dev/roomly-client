@@ -4,7 +4,7 @@ import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 
 const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const userLoggedIn = true; // change to false for logged-out view
+  const userLoggedIn = false; // change to false for logged-out view
 
   const navLinks = (
     <>
