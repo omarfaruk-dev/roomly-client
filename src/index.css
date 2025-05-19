@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Rancho&display=swap');
+
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: light --default;
+}
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: #403F3F;
+    --color-secondary: #D72050;
+    --color-base-200: #F3F3F3;
+    --color-base-300: #E7E7E7;
+    --color-accent: #706F6F;
+  }
+
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+
+  a.active {
+    @apply bg-base-300;
+  }
