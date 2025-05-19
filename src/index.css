@@ -8,7 +8,7 @@
     name: "light";
     default: true;
     --color-primary: #403F3F;
-    --color-secondary: #D72050;
+    --color-secondary: #EB4899;
     --color-base-200: #F3F3F3;
     --color-base-300: #E7E7E7;
     --color-accent: #706F6F;
@@ -19,5 +19,5 @@
   }
 
   a.active {
-    @apply bg-base-300;
+    @apply text-secondary;
   }

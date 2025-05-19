@@ -1,0 +1,77 @@
+import { Link, NavLink } from "react-router";
+import { use } from "react";
+import { FiLogOut } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContext";
+
+const NavBar = () => {
+  const { user, signOutUser } = use(AuthContext);
+  console.log(user);
+  const handleLogout = () => {
+    signOutUser().catch((err) => console.log(err));
+  };
+
+  const navLinks = (
+    <>
+      <li><NavLink to="/">Home</NavLink></li>
+      <li><NavLink to="/browse">Browse Listing</NavLink></li>
+      {user && (
+        <>
+          <li><NavLink to="/add">Add to Find Roommate</NavLink></li>
+          <li><NavLink to="/mylistings">My Listings</NavLink></li>
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <div className="navbar bg-base-100 shadow-md px-4">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost md:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[99] p-2 shadow bg-base-100 rounded-box w-52">
+            {navLinks}
+          </ul>
+        </div>
+        <Link to="/" className="text-xl font-bold text-purple-600">Roomly</Link>
+      </div>
+
+      <div className="navbar-center hidden md:flex">
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+      </div>
+
+      <div className="navbar-end">
+        {!user ? (
+          <>
+            <Link to="/login" className="btn btn-sm btn-outline mr-2">Sign In</Link>
+            <Link to="/signup" className="btn btn-sm btn-primary">Sign Up</Link>
+          </>
+        ) : (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full border border-purple-400">
+                <img src={user.photoURL || "/default-avatar.png"} alt="user profile" />
+              </div>
+            </label>
+            <ul tabIndex={0} className="mt-3 z-[99] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+              <li><span className="text-center font-semibold">{user.displayName || "User"}</span></li>
+              <li><Link to="/profile"><FaUserCircle /> Profile</Link></li>
+              <li><button onClick={handleLogout}><FiLogOut /> Logout</button></li>
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default NavBar;

@@ -1,5 +1,5 @@
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, signInWithEmailAndPassword, signOut  } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 import { useEffect, useState } from 'react';
 
@@ -21,6 +21,10 @@ const AuthProvider = ({ children }) => {
         return deleteUser(auth.currentUser);
     } 
 
+    const signOutUser = () => {
+        return signOut(auth);
+    }
+
     // Firebase auth state change
      useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -36,6 +40,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         signInUser,
+        signOutUser,
         deleteSingleUser
     }
 
