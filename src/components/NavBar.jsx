@@ -8,10 +8,10 @@ const NavBar = () => {
 
   const navLinks = (
     <>
-      <NavLink to="/" className="px-3 py-2 block text-sm font-medium text-gray-800">Home</NavLink>
-      <NavLink to="/browse" className="px-3 py-2 block text-sm font-medium text-gray-800">Add to Find Roommate</NavLink>
-      <NavLink to="/add" className="px-3 py-2 block text-sm font-medium text-gray-800">Browse</NavLink>
-      <NavLink to="/mylistings" className="px-3 py-2 block text-sm font-medium text-gray-800">My Listing</NavLink>
+      <NavLink to="/" className="px-3 py-2 block text-sm font-medium text-primary">Home</NavLink>
+      <NavLink to="/add-to-find" className="px-3 py-2 block text-sm font-medium text-primary">Add to Find Roommate</NavLink>
+      <NavLink to="/browse-roommate" className="px-3 py-2 block text-sm font-medium text-primary">Browse</NavLink>
+      <NavLink to="/my-listing" className="px-3 py-2 block text-sm font-medium text-primary">My Listing</NavLink>
     </>
   );
 
@@ -33,20 +33,20 @@ const NavBar = () => {
         <div className="hidden md:flex items-center space-x-3">
           {!userLoggedIn ? (
             <>
-              <Link to="/login" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
+              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
               <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded text-sm">Sign Up</Link>
             </>
           ) : (
             <div className="relative group cursor-pointer">
               <img src="/default-avatar.png" alt="profile"
-                className="w-9 h-9 rounded-full border border-purple-500" />
-              <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="px-4 py-2 text-sm font-medium text-gray-700">John Doe</p>
+                className="w-9 h-9 rounded-full border border-secondary" />
+              <div className="absolute right-0 mt-2 w-40 bg-base-100 border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="px-4 py-2 text-sm font-medium text-primary">John Doe</p>
                 <hr />
-                <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 w-full text-left">
+                <button className="flex items-center gap-2 px-4 py-2 text-sm text-primary w-full text-left">
                   <FaUserCircle /> Profile
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 w-full text-left">
+                <button className="flex items-center gap-2 px-4 py-2 text-sm text-primary w-full text-left">
                   <FaSignOutAlt /> Logout
                 </button>
               </div>
@@ -68,7 +68,7 @@ const NavBar = () => {
           {navLinks}
           {!userLoggedIn ? (
             <div className="flex flex-col space-y-2 mt-2 px-3">
-              <Link to="/login" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
+              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
               <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded text-sm">Sign Up</Link>
             </div>
           ) : (
