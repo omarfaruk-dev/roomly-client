@@ -9,18 +9,21 @@ const NavBar = () => {
   const navLinks = (
     <>
       <NavLink to="/" className="px-3 py-2 block text-sm font-medium text-gray-800">Home</NavLink>
-      <NavLink to="/add" className="px-3 py-2 block text-sm font-medium text-gray-800">Add to Find Roommate</NavLink>
-      <NavLink to="/browse" className="px-3 py-2 block text-sm font-medium text-gray-800">Browse Listing</NavLink>
-      <NavLink to="/mylistings" className="px-3 py-2 block text-sm font-medium text-gray-800">My Listings</NavLink>
+      <NavLink to="/browse" className="px-3 py-2 block text-sm font-medium text-gray-800">Add to Find Roommate</NavLink>
+      <NavLink to="/add" className="px-3 py-2 block text-sm font-medium text-gray-800">Browse</NavLink>
+      <NavLink to="/mylistings" className="px-3 py-2 block text-sm font-medium text-gray-800">My Listing</NavLink>
     </>
   );
 
   return (
-    <nav className="bg-white shadow-sm px-4 py-2">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
+    <nav className="bg-white shadow">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo */}
         <div className="flex items-center">
-          <Link to="/" className="text-xl font-bold text-purple-600"><img className="w-50" src="logo.png" alt="" /></Link>
+          <Link to="/" className="text-xl font-bold text-primary flex items-center">
+            <img className="w-10" src="logo-small.png" alt="" />
+            <span className="ml-2 block md:hidden lg:block">RoomLy</span>
+          </Link>
         </div>
 
         {/* Desktop Nav */}
@@ -30,8 +33,8 @@ const NavBar = () => {
         <div className="hidden md:flex items-center space-x-3">
           {!userLoggedIn ? (
             <>
-              <Link to="/login" className="bg-purple-500 text-white px-4 py-1 rounded btn-secondary text-sm">Sign In</Link>
-              <Link to="/signup" className="bg-purple-500 text-white px-4 py-1 rounded btn-secondary text-sm">Sign Up</Link>
+              <Link to="/login" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
+              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded text-sm">Sign Up</Link>
             </>
           ) : (
             <div className="relative group cursor-pointer">
@@ -65,8 +68,8 @@ const NavBar = () => {
           {navLinks}
           {!userLoggedIn ? (
             <div className="flex flex-col space-y-2 mt-2 px-3">
-              <Link to="/login" className="bg-purple-500 text-white px-4 py-1 rounded text-sm">Sign In</Link>
-              <Link to="/signup" className="bg-purple-500 text-white px-4 py-1 rounded text-sm">Sign Up</Link>
+              <Link to="/login" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
+              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded text-sm">Sign Up</Link>
             </div>
           ) : (
             <div className="px-3 space-y-2 mt-2">
