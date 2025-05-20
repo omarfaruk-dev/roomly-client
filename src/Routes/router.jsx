@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp";
 import AddRoommate from "../pages/AddRoommate";
 import Spinner from "../components/ui/Spinner";
 import RoommateDetails from "../pages/RoommateDetails";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add-roommate',
-                element: <AddRoommate />
+                element: <PrivateRoutes><AddRoommate /></PrivateRoutes>
             },
             {
                 path: '/roommate-details/:id',

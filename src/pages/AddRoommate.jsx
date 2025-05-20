@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { use } from 'react';
 import { FaArrowLeft, FaArrowRight, FaChevronDown, FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../context/AuthContext';
 
 const AddRoommateForm = () => {
+
+    const {user} = use(AuthContext);
+    console.log(user);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -204,7 +208,7 @@ const AddRoommateForm = () => {
                         <input
                             type="text"
                             name="userName"
-                            // value="John Doe"
+                            value={user?.displayName}
                             // readOnly
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
@@ -214,8 +218,8 @@ const AddRoommateForm = () => {
                         <input
                             type="email"
                             name="email"
-                            // value="john@example.com"
-                            // readOnly
+                            value={user?.email}
+                            readOnly
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
