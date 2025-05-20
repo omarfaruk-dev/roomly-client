@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaArrowLeft, FaArrowRight, FaChevronDown } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaChevronDown, FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
@@ -82,6 +82,7 @@ const AddRoommateForm = () => {
                         <input
                             type="text"
                             name="location"
+                            placeholder="123 Main St, NY, US."
                             required
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
                         />
@@ -106,7 +107,7 @@ const AddRoommateForm = () => {
                             <select
                                 name='room-type'
                                 className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary">
-                                <option value="">Select</option>
+                                <option value="">Select Room Type</option>
                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
                                 <option value="Studio">Studio</option>
@@ -124,6 +125,7 @@ const AddRoommateForm = () => {
                                 name='availability'
                                 required
                                 className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary appearance-none pr-10">
+                                <option value="">Select Availability</option>
                                 <option value="available">Available</option>
                                 <option value="not-available">Not Available</option>
                             </select>
@@ -156,21 +158,43 @@ const AddRoommateForm = () => {
                         rows={10}
                         name="description"
                         required
-                        className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                        className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-2 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
                         placeholder="Write something about the room or preferences..."
                     ></textarea>
+
+                </div>
+                {/* Title */}
+                <div>
+                    <label className="block text-sm font-medium text-primary mb-1">Room Photo URL</label>
+                    <input
+                        type="text"
+                        name="roomPhoto"
+                        required
+                        placeholder="https://example.com/room.jpg"
+                        className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                    />
                 </div>
 
                 {/* Contact Info */}
-                <div>
-                    <label className="block text-sm font-medium text-primary mb-1">Contact Info</label>
-                    <input
-                        type="text"
-                        name="contact"
-                        required
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
-                        placeholder="Phone number, social link etc."
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium text-primary mb-1">Phone No</label>
+                        <input
+                            type="text"
+                            name="phone"
+                            placeholder='+1 234 567 8900'
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-primary mb-1">Social Chat</label>
+                        <input
+                            type="text"
+                            name="chatLink"
+                            placeholder='wa.me/username'
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                        />
+                    </div>
                 </div>
 
                 {/* Read-Only User Info */}
@@ -196,6 +220,19 @@ const AddRoommateForm = () => {
                         />
                     </div>
                 </div>
+                {/* Likes (hidden, default 0) */}
+                <div className="md:col-span-2 hidden">
+                    <label className="block font-medium mb-1">
+                        Like Count (default: 0)
+                    </label>
+                    <input
+                        type="number"
+                        name="likes"
+                        value={0}
+                        readOnly
+                        className="input-base cursor-not-allowed"
+                    />
+                </div>
 
                 {/* Submit */}
                 <div className="text-center">
@@ -203,7 +240,7 @@ const AddRoommateForm = () => {
                         type="submit"
                         className="btn btn-secondary text-base-100 px-6 py-2 rounded-md hover:bg-opacity-90 transition duration-300"
                     >
-                        Add Roommate
+                        <FaPlus /> Add Roommate
                     </button>
                 </div>
             </form>
