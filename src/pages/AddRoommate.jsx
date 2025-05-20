@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaChevronDown } from 'react-icons/fa';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const AddRoommateForm = () => {
@@ -10,7 +11,7 @@ const AddRoommateForm = () => {
 
         const formData = new FormData(form);
         const newPost = Object.fromEntries(formData.entries());
-        
+
 
         // Get multiple checkbox values
         const preferences = formData.getAll('preferences');
@@ -46,18 +47,22 @@ const AddRoommateForm = () => {
         <div className="max-w-4xl mx-auto px-4 py-8">
             {/* Top Bar: Back | Title | View All */}
             <div className="flex items-center justify-between mb-6">
-                <button className="text-sm text-primary font-medium">
-                    ← Back
-                </button>
-                <h2 className="text-xl md:text-2xl font-bold text-primary text-center flex-1">Add to Find Roommate</h2>
-                <button className="text-sm text-primary font-medium">
-                    View All
-                </button>
+
+                <h2 className="text-xl md:text-3xl font-bold text-primary text-center flex-1">Add to Find Roommate</h2>
+
+            </div>
+            <div className='flex justify-between items-center py-5'>
+                <Link to='/' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
+                    <FaArrowLeft /> Go Back
+                </Link>
+                <Link to='/browse-roommate' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
+                    View All <FaArrowRight />
+                </Link>
             </div>
 
             <form
                 onSubmit={handleSubmit}
-                className="space-y-6 bg-base-100 shadow-md rounded-xl p-6 border border-accent">
+                className="space-y-6 bg-base-100 shadow-md rounded p-6 border-2 border-secondary/30">
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Title</label>
@@ -97,14 +102,19 @@ const AddRoommateForm = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm font-medium text-primary mb-1">Room Type</label>
-                        <select
-                            name='room-type'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary">
-                            <option value="">Select</option>
-                            <option value="Single">Single</option>
-                            <option value="Shared">Shared</option>
-                            <option value="Studio">Studio</option>
-                        </select>
+                        <div className='relative'>
+                            <select
+                                name='room-type'
+                                className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary">
+                                <option value="">Select</option>
+                                <option value="Single">Single</option>
+                                <option value="Shared">Shared</option>
+                                <option value="Studio">Studio</option>
+                            </select>
+                            <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-accent">
+                                <FaChevronDown className="text-sm" />
+                            </div>
+                        </div>
                     </div>
                     {/* Availability */}
                     <div>
@@ -137,21 +147,6 @@ const AddRoommateForm = () => {
                         ))}
                     </div>
                 </div>
-                {/* <div>
-                    <label className="block text-sm font-medium text-primary mb-1">
-                        Lifestyle Preferences
-                    </label>
-                    <select
-                        multiple
-                        name="lifestylePreferences"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary h-32"
-                    >
-                        <option value="Pets">Pets</option>
-                        <option value="Smoking">Smoking</option>
-                        <option value="Night Owl">Night Owl</option>
-                        <option value="Early Bird">Early Bird</option>
-                    </select>
-                </div> */}
 
 
                 {/* Description */}
@@ -187,7 +182,7 @@ const AddRoommateForm = () => {
                             name="userName"
                             // value="John Doe"
                             // readOnly
-                            className="w-full border border-accent rounded-md p-2 text-accent bg-gray-100"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -197,7 +192,7 @@ const AddRoommateForm = () => {
                             name="email"
                             // value="john@example.com"
                             // readOnly
-                            className="w-full border border-accent rounded-md p-2 text-accent bg-gray-100"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
                         />
                     </div>
                 </div>

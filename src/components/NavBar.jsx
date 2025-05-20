@@ -21,7 +21,7 @@ const NavBar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="text-xl font-bold text-primary flex items-center">
-            <img className="w-10" src="logo-small.png" alt="" />
+            <img className="w-10" src="/logo-small.png" alt="" />
             <span className="ml-2 block md:hidden lg:block">RoomLy</span>
           </Link>
         </div>
