@@ -1,4 +1,3 @@
-import React from 'react';
 import Banner from '../components/Banner';
 import FeaturedRoommates from '../components/RoomMates/FeaturedRoommates';
 // import HeroSlider from '../components/HeroSlider';

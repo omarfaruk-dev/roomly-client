@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AddRoommate from "../pages/AddRoommate";
+import Spinner from "../components/ui/Spinner";
 
 
 const router = createBrowserRouter([
@@ -15,6 +16,8 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 index: true,
+                hydrateFallbackElement: <Spinner/>,
+                loader: () => fetch('http://localhost:3000/roommates'),
                 Component: Home,
             },
             {
