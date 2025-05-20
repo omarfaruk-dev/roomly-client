@@ -1,14 +1,18 @@
-import { Link } from "react-router";
-import signUpImg from '../assets/signup.svg'
+import { Link, Navigate, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { use, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Swal from "sweetalert2";
+import Spinner from "../components/ui/Spinner";
 
 const SignUp = () => {
 
-    const { createUser } = use(AuthContext);
+    const {user, createUser, googleSignIn, setUser, updateUser } = use(AuthContext);
+
+    const navigate = useNavigate()
 
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -24,37 +28,28 @@ const SignUp = () => {
         numberOrSymbol: /(?=.*[0-9])|(?=.*[^A-Za-z0-9])/.test(password),
         emailNotIncluded: !password.includes(email.split('@')[0]),
     };
-
+    // email validation 
+    const emailErrorMessages = {
+        "auth/invalid-email": "Please enter a valid email address.",
+        "auth/email-already-in-use": "This email is already registered. Please use a different one or log in instead.",
+        "auth/user-not-found": "No account found with this email.",
+        "auth/missing-email": "Please provide your email address.",
+    };
 
     const handleSignUp = (e) => {
         e.preventDefault();
 
         const form = e.target;
-        const formData = new FormData(form);
-        const { email, password, ...restFormData } = Object.fromEntries(formData.entries());
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
+        const formData = { name, email, password, photo }
+        // const formData = new FormData(form);
+        // const { email, password, ...restFormData } = Object.fromEntries(formData.entries());
+        console.log(formData);
 
-
-        //create user in the firebase
-        createUser(email, password)
-            .then((userCredential) => {
-                const currentUser = userCredential.user;
-                console.log(currentUser);
-                const userProfile = {
-                    email, ...restFormData,
-                    uid: currentUser.uid,
-                }
-                console.log(userProfile);
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error('Error creating user:', errorCode, errorMessage);
-            });
-
-
-
-
-
+        //validation
         const isValid = {
             length: password.length >= 6,
             lowerUpper: /(?=.*[a-z])(?=.*[A-Z])/.test(password),
@@ -68,26 +63,73 @@ const SignUp = () => {
             return;
         }
 
+        //create user in the firebase
+        createUser(email, password)
+            .then((userCredential) => {
+                const currentUser = userCredential.user;
+                navigate(location.state || '/');
+                if (currentUser) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Sign Up Success!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                }
+                updateUser({ displayName: name, photoURL: photo }).then(() => {
+                    setUser({ ...user, displayName: name, photoURL: photo });
+                }).catch(error => {
+                    toast.error(error.message || 'Something went wrong!');
+                });
+            })
+            .catch(error => {
+                toast.error(emailErrorMessages[error.code] || 'Something went wrong!');
+            });
+
     };
 
+    //google signin
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                setUser(result.user);
+                Navigate(`${location.state ? location.state : '/'}`)
+                toast.success('successfully login with google')
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage || 'Something went wrong!');
+                console.log(error.message);
+            })
+    }
 
 
+
+     if(user) {
+        return <>
+        <Spinner/>
+        {navigate('/')}
+        </>
+    }
 
     return (
         <div className="min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
             {/* Left Column Image */}
-            <div className="flex-1 flex items-center justify-center p-8">
-                <img
-                    src={signUpImg}
-                    alt="Animation"
-                    className="max-w-full md:w-1/2 lg:w-full object-contain"
+            <div className="flex-1 flex items-center justify-center p-4">
+                <DotLottieReact
+                    src="https://lottie.host/adbe480f-f24b-4292-838b-a4f74294f37e/FrK9Ai3HLB.lottie"
+                    loop
+                    autoplay
+                    style={{ width: '100%', maxWidth: '550px' }}
                 />
             </div>
 
             {/* Right Column (Form) */}
             <div className="flex-1 w-full flex items-center justify-center p-8">
                 <div className="w-full max-w-md border-2 p-10 rounded-lg border-secondary shadow-md">
-                    <h2 className="text-3xl font-bold mb-6 text-center">Sign Up</h2>
+                    <h2 className="text-3xl text-primary font-bold mb-6 text-center">Sign Up</h2>
 
                     <form
                         onSubmit={handleSignUp}
@@ -95,19 +137,20 @@ const SignUp = () => {
                         {/* name */}
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Name</span>
+                                <span className="label-text text-primary font-medium">Name</span>
                             </label>
                             <input
                                 type="text"
                                 name="name"
                                 placeholder="Your name"
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                                required
+                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
                         {/* Email */}
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Email</span>
+                                <span className="label-text text-primary font-medium">Email</span>
                             </label>
                             <input
                                 type="email"
@@ -115,26 +158,26 @@ const SignUp = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
                         {/* photo */}
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Photo Url</span>
+                                <span className="text-primary label-text font-medium">Photo Url</span>
                             </label>
                             <input
                                 type="text"
                                 name="photo"
                                 placeholder="Photo Url"
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
 
                         {/* Password */}
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Password</span>
+                                <span className="text-primary label-text font-medium">Password</span>
                             </label>
                             <div className="relative">
                                 <input
@@ -143,7 +186,7 @@ const SignUp = () => {
                                     onFocus={() => setShowValidation(true)}
                                     onChange={(e) => setPassword(e.target.value)}
                                     type={showPassword ? 'text' : 'password'}
-                                    className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+                                    className="input input-bordered w-full focus:outline-none focus:ring-1 focus:ring-secondary"
                                     placeholder="Enter your password"
                                     required
                                 />
@@ -185,9 +228,11 @@ const SignUp = () => {
                     <div className="divider">OR</div>
 
                     {/* Sign in with Google */}
-                    <button className="btn btn-outline border-secondary w-full rounded">
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded">
                         <FcGoogle />
-                        Sign in with Google
+                        Continue with Google
                     </button>
 
                     {/* Sign Up Link */}

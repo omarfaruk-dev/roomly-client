@@ -71,7 +71,7 @@ const AddRoommateForm = () => {
                         name="title"
                         required
                         placeholder="Looking for a roommate in NYC"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                        className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                     />
                 </div>
 
@@ -84,7 +84,7 @@ const AddRoommateForm = () => {
                             name="location"
                             placeholder="123 Main St, NY, US."
                             required
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -94,7 +94,7 @@ const AddRoommateForm = () => {
                             name="amount"
                             required
                             placeholder="e.g. 1200"
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
@@ -106,7 +106,7 @@ const AddRoommateForm = () => {
                         <div className='relative'>
                             <select
                                 name='room-type'
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary">
+                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary">
                                 <option value="">Select Room Type</option>
                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
@@ -124,7 +124,7 @@ const AddRoommateForm = () => {
                             <select
                                 name='availability'
                                 required
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary appearance-none pr-10">
+                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
                                 <option value="">Select Availability</option>
                                 <option value="available">Available</option>
                                 <option value="not-available">Not Available</option>
@@ -158,7 +158,7 @@ const AddRoommateForm = () => {
                         rows={10}
                         name="description"
                         required
-                        className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-2 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
+                        className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
                         placeholder="Write something about the room or preferences..."
                     ></textarea>
 
@@ -171,7 +171,7 @@ const AddRoommateForm = () => {
                         name="roomPhoto"
                         required
                         placeholder="https://example.com/room.jpg"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                        className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                     />
                 </div>
 
@@ -183,7 +183,7 @@ const AddRoommateForm = () => {
                             type="text"
                             name="phone"
                             placeholder='+1 234 567 8900'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -192,7 +192,7 @@ const AddRoommateForm = () => {
                             type="text"
                             name="chatLink"
                             placeholder='wa.me/username'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
@@ -206,7 +206,7 @@ const AddRoommateForm = () => {
                             name="userName"
                             // value="John Doe"
                             // readOnly
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -216,7 +216,7 @@ const AddRoommateForm = () => {
                             name="email"
                             // value="john@example.com"
                             // readOnly
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-2 focus:ring-secondary"
+                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
