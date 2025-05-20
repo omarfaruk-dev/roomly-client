@@ -9,7 +9,7 @@ const NavBar = () => {
   const navLinks = (
     <>
       <NavLink to="/" className="px-3 py-2 block text-sm font-medium text-primary">Home</NavLink>
-      <NavLink to="/add-to-find" className="px-3 py-2 block text-sm font-medium text-primary">Add to Find Roommate</NavLink>
+      <NavLink to="/add-roommate" className="px-3 py-2 block text-sm font-medium text-primary">Add to Find Roommate</NavLink>
       <NavLink to="/browse-roommate" className="px-3 py-2 block text-sm font-medium text-primary">Browse</NavLink>
       <NavLink to="/my-listing" className="px-3 py-2 block text-sm font-medium text-primary">My Listing</NavLink>
     </>

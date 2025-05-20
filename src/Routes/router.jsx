@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import AddRoommate from "../pages/AddRoommate";
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 Component: SignUp,
+            },
+            {
+                path: '/add-roommate',
+                element: <AddRoommate/>
             },
             
             {
