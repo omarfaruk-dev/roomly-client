@@ -7,7 +7,6 @@ import { Link, useLoaderData } from 'react-router';
 
 const FeaturedRoommates = () => {
   const roommates = useLoaderData();
-  console.log(roommates);
    const [liked, setLiked] = useState(false);
    const handleLikeToggle = () => {
     setLiked(!liked);
@@ -72,7 +71,7 @@ const FeaturedRoommates = () => {
     //     </div>
     //   </div>
     // </section>
-    <section className="py-16 px-4 md:px-8 bg-white">
+    <section className="py-16 px-4 md:px-8 bg-base-100">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-primary mb-12">
           Featured Roommates

@@ -67,13 +67,12 @@ const SignIn = () => {
                     timer: 1500
                 });
                 navigate(`${location.state ? location.state : '/'}`)
-                console.log(location.state);
 
             })
             .catch(error => {
                 const message = errorMessages[error.code] || "An unexpected error occurred.";
                 setError(message)
-                console.log(error);
+                toast.error(errorMessages)
             })
 
     }
@@ -83,7 +82,6 @@ const SignIn = () => {
             {/* Left Column Image */}
             <div className="flex-1 flex items-center justify-center p-4">
                 <DotLottieReact
-                    // src="https://lottie.host/ccf35f35-9480-4ac5-b924-9944973475db/IgaejBSkdk.lottie"
                     src="https://lottie.host/adbe480f-f24b-4292-838b-a4f74294f37e/FrK9Ai3HLB.lottie"
                     loop
                     autoplay

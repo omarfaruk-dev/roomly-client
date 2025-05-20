@@ -1,19 +1,33 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { use, useState } from "react";
 import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
-  const { user } = use(AuthContext);
+  const { user, signOutUser } = use(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const userLoggedIn = false; 
+  const navigate = useNavigate();
+
+  //signout user
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                navigate('/')
+                toast.success('Log Out Successfully!')
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage || 'Something went wrong!')
+            })
+    }
 
   const navLinks = (
     <>
-      <NavLink to="/" className="px-3 md:px-2 lg:px-3 py-2 block text-sm font-medium text-primary">Home</NavLink>
-      <NavLink to="/add-roommate" className="px-3 md:px-2 lg:px-3 py-2 block text-sm font-medium text-primary">Add to Find Roommate</NavLink>
-      <NavLink to="/browse-roommate" className="px-3 md:px-2 lg:px-3 py-2 block text-sm font-medium text-primary">Browse Listing</NavLink>
-      <NavLink to="/my-listing" className="px-3 md:px-2 lg:px-3 py-2 block text-sm font-medium text-primary">My Listing</NavLink>
+      <NavLink to="/" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">Home</NavLink>
+      <NavLink to="/add-roommate" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">Add to Find Roommate</NavLink>
+      <NavLink to="/browse-roommate" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">Browse Listing</NavLink>
+      <NavLink to="/my-listing" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">My Listing</NavLink>
     </>
   );
 
@@ -40,17 +54,19 @@ const NavBar = () => {
             </>
           ) : (
             <div className="relative group cursor-pointer">
-              {user ? <img src={user.photoRUL} alt="profile" className="w-9 h-9 rounded-full border border-secondary" /> : <FaUser />}
+              {user ? <img src={user.photoRUL} alt="profile" className="w-12 h-12 rounded-full border border-secondary" /> : <FaUser />}
 
               <div className="absolute right-0 mt-2 w-40 bg-base-100 border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="px-4 py-2 text-sm font-medium text-primary">{user.displayName}</p>
+                <p className="px-4 py-2 text-sm font-medium text-primary">Name {user.displayName}</p>
                 <hr />
-                <button className="flex items-center gap-2 px-4 py-2 text-sm text-primary w-full text-left">
+                <button className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
                   <FaUserCircle /> Profile
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 text-sm text-primary w-full text-left">
+                <Link
+                onClick={handleSignOut}
+                className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
                   <FaSignOutAlt /> Logout
-                </button>
+                </Link>
               </div>
             </div>
           )}
@@ -76,12 +92,14 @@ const NavBar = () => {
           ) : (
             <div className="px-3 space-y-2 mt-2">
               <p className="text-sm font-medium">{user?.displayName}</p>
-              <button className="flex items-center gap-2 text-sm text-gray-700 w-full">
+              <button className="flex items-center gap-2 text-primary-700 w-full">
                 <FaUserCircle /> Profile
               </button>
-              <button className="flex items-center gap-2 text-sm text-gray-700 w-full">
+              <Link 
+              onClick={handleSignOut}
+              className="flex items-center gap-2 text-primary w-full">
                 <FaSignOutAlt /> Logout
-              </button>
+              </Link>
             </div>
           )}
         </div>
