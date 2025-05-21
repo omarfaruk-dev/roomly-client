@@ -1,15 +1,53 @@
 import { useLoaderData } from "react-router";
 import { FaEdit, FaTrashAlt, FaHeart } from "react-icons/fa";
 import { Link } from "react-router";
-import { use } from "react";
+import { use, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const MyListing = () => {
     const { user } = use(AuthContext);
     const allListings = useLoaderData();
 
     // Filter listings based on the logged-in user's email
-    const myListings = allListings.filter(listing => listing.email === user?.email);
+    const [listing, setListing] = useState(allListings);
+    const myListings = listing.filter(listing => listing.email === user?.email);
+
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3741', // your primary color
+            cancelButtonColor: '#545454',  // your secondary color
+            confirmButtonText: 'Yes, delete it!',
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:3000/roommates/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then((res) => res.json())
+                        .then(data => {
+                            console.log(data.deletedCount);
+                            if (data.deletedCount > 0) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "Post has been deleted!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                // Remove the deleted item from the state
+                                const remainingList = listing.filter(list => list._id !== id);
+                                setListing(remainingList);
+                            }
+                        })
+                }
+            })
+    };
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-10 mt-20">
@@ -69,11 +107,6 @@ const MyListing = () => {
             }
         </div>
     );
-};
-
-// Dummy delete handler (replace with actual logic)
-const handleDelete = (id) => {
-    console.log("Delete clicked:", id);
 };
 
 export default MyListing;
