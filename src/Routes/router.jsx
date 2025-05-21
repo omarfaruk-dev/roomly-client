@@ -47,7 +47,7 @@ const router = createBrowserRouter([
                 path: '/roommate-details/:id',
                 hydrateFallbackElement: <Spinner />,
                 loader: ({ params }) => fetch(`http://localhost:3000/roommates/${params.id}`),
-                element: <RoommateDetails />
+                element: <PrivateRoutes><RoommateDetails /></PrivateRoutes>
             },
             {
                 path: '/browse-listing',

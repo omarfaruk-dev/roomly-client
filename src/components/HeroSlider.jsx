@@ -32,7 +32,7 @@ const HeroSlider = () => {
   ];
 
   return (
-    <div className="w-full h-[400px] md:h-[500px]">
+    <div className="mt-20 max-w-7xl mx-auto rounded h-[400px]">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -50,7 +50,7 @@ const HeroSlider = () => {
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
-             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-4">
+             <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-4">
 
                 <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold">
                   {slide.title}

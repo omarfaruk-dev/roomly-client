@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { FaHeart, FaPhone, FaRegHeart } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
+import { toast } from 'react-hot-toast';
 
 const RoommateDetails = () => {
     const roommateData = useLoaderData()
-    const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(0);
-
+    const {user} = use(AuthContext);
     const {
         roomPhoto,
         title,
@@ -14,19 +14,43 @@ const RoommateDetails = () => {
         amount,
         ['room-type']: roomType,
         availability,
-
         preferences,
         description,
         phone,
         userName,
         email,
         chatLink,
+        likes,
     } = roommateData;
 
-    const handleLike = () => {
-        if (!liked) {
-            setLiked(true);
-            setLikeCount(prev => prev + 1);
+    const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(parseInt(likes));
+
+    // Prevent user from liking their own post
+    const isOwnPost = user && user.email === email;
+
+    const handleLike = async () => {
+        if (isOwnPost) {
+            alert("You can't like your own post");
+            return;
+        }
+        try {
+            const response = await fetch(`http://localhost:3000/roommates/${roommateData._id}/like`, {
+                method: 'PATCH',
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setLiked(true);
+                setLikeCount(data.likes);
+                // Remove setTimeout: keep liked true so contact details stay expanded
+            } else {
+                const errorText = await response.text();
+                toast.error('Failed to update like count.');
+                console.error('Failed to update like count:', response.status, errorText);
+            }
+        } catch (e) {
+            toast.error('An error occurred while updating like count.');
+            console.error('An error occurred while updating like count:', e);
         }
     };
 
@@ -81,42 +105,43 @@ const RoommateDetails = () => {
             {/* User Info & Like Button */}
             <div className="flex items-center justify-between border-dashed border-t border-secondary/30 pt-4">
                 {/* User Info */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                     <img
                         src="https://i.pravatar.cc/100"
                         alt="User"
-                        className="w-10 h-10 rounded-full border border-secondary"
+                        className="w-12 h-12 rounded-full border-2 border-secondary shadow-sm hover:scale-105 transition-transform duration-200 bg-white"
                     />
-                    <div>
-                        <p className="font-medium text-primary">{userName}</p>
-                        <p className="text-sm text-accent">{email}</p>
+                    <div className="flex flex-col">
+                        <span className="font-semibold text-primary text-base flex items-center gap-1">
+                            {userName}
+                            <span className="inline-block bg-secondary/20 text-secondary text-xs px-2 py-0.5 rounded-full ml-1">Owner</span>
+                        </span>
+                        <span className="text-xs text-accent italic tracking-wide">{email}</span>
                     </div>
                 </div>
 
                 {/* Like Button */}
                 <button
                     onClick={handleLike}
-                    className={`text-xl transition-all hover:scale-110 ${liked ? 'text-secondary' : 'text-accent'}`}
-                    disabled={liked}
+                    className={`flex items-center gap-1 text-lg px-3 py-1 rounded-full shadow border border-secondary/30 bg-gradient-to-r from-secondary/10 via-white to-primary/10 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-secondary/30 ${liked ? 'text-secondary bg-secondary/10 border-secondary' : 'text-accent'}`}
+                    title={isOwnPost ? "You can't like your own post" : liked ? "Already liked" : "Like to view contact info"}
                 >
-                    {liked ? <FaHeart /> : <FaRegHeart />}
+                    {liked ? <FaHeart className="animate-pulse" /> : <FaRegHeart />}
+                    <span className="ml-1 text-sm font-medium hidden sm:inline">{liked ? 'Liked' : 'View Contact Info'}</span>
                 </button>
             </div>
 
-            {liked && (
-                <div className="mt-4 bg-base-100 p-4 rounded border border-secondary/30 text-accent space-y-2">
-                    <p className="font-medium text-center text-lg">Contact Details</p>
-                    <div className='flex justify-center items-center gap-5'>
-                        <p className="flex items-center gap-2"><FaPhone className='text-secondary' /> {phone}</p>
-
+            {(liked && !isOwnPost) && (
+                <div className="mt-6 bg-gradient-to-br from-secondary/10 via-base-100 to-primary/10 p-6 rounded-2xl border border-secondary/30 text-accent shadow-lg animate-fade-in">
+                    <p className="font-bold text-center text-xl text-primary mb-3 tracking-wide">Contact Details</p>
+                    <div className='flex flex-col sm:flex-row justify-center items-center gap-6'>
+                        <p className="flex items-center gap-2 text-lg font-medium bg-secondary/10 px-4 py-2 rounded-full shadow-sm"><FaPhone className='text-secondary' /> {phone}</p>
                         {/* Chat Link */}
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-2">
-                            <Link to={chatLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-outline btn-secondary text-sm sm:w-auto w-full"
-                            >Chat Now! </Link>
-                        </div>
+                        <Link to={chatLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-secondary btn-outline text-base px-6 py-2 rounded-full shadow hover:bg-secondary/20 transition-all duration-200"
+                        >Chat Now!</Link>
                     </div>
                 </div>
             )}
