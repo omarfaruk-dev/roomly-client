@@ -10,6 +10,7 @@ import RoommateDetails from "../pages/RoommateDetails";
 import PrivateRoutes from "./PrivateRoutes";
 import BrowseListings from "../pages/browsListing/BrowsListing";
 import MyListing from "../pages/myListing/MyListing";
+import UpdateRoommateInfo from "../pages/UpdateRoommateInfo";
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
             {
                 path: '/add-roommate',
                 element: <PrivateRoutes><AddRoommate /></PrivateRoutes>
+            },
+            {
+                path: '/update-roommate/:id',
+                hydrateFallbackElement: <Spinner />,
+                loader: ({ params }) => fetch(`http://localhost:3000/roommates/${params.id}`),
+                element: <UpdateRoommateInfo />
             },
             {
                 path: '/roommate-details/:id',

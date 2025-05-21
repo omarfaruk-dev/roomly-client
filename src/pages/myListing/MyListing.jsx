@@ -86,7 +86,7 @@ const MyListing = () => {
 
                                         <td className="px-4 py-3 border-b border-secondary/10 text-center space-y-1 lg:space-y-0 space-x-2">
                                             <Link
-                                                to={`/edit-roommate/${item._id}`}
+                                                to={`/update-roommate/${item._id}`}
                                                 className="btn btn-xs md:btn-sm btn-outline btn-primary"
                                             >
                                                 <FaEdit className="mr-1" /> Edit

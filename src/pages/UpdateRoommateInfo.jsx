@@ -1,52 +1,50 @@
-import React, { use } from 'react';
+import { use } from 'react';
 import { FaArrowLeft, FaArrowRight, FaChevronDown, FaPlus } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
 
-const AddRoommateForm = () => {
+const UpdateRoommateInfo = () => {
+    const allData = useLoaderData();
+    const { _id, roomPhoto, title,
+        location, amount, ['room-type']: roomType, availability, preferences,
+        description, phone, chatLink, } = allData;
 
-    const {user} = use(AuthContext);
-    console.log(user);
+    const { user } = use(AuthContext);
 
-    const handleSubmit = (e) => {
+    const handleUpdatePost = (e) => {
         e.preventDefault();
         const form = e.target;
-
         const formData = new FormData(form);
-        const newPost = Object.fromEntries(formData.entries());
-
+        const updatePost = Object.fromEntries(formData.entries());
 
         // Get multiple checkbox values
         const preferences = formData.getAll('preferences');
-        newPost.preferences = preferences;
-        console.log(newPost);
-        
+        updatePost.preferences = preferences;
+        console.log(updatePost);
 
-        //send to db
-        fetch('http://localhost:3000/roommates', {
-            method: "POST",
+
+        //Update roommate info and send to db
+        fetch(`http://localhost:3000/roommates/${_id}`, {
+            method: "PUT",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(newPost)
+            body: JSON.stringify(updatePost)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+                if (data.modifiedCount) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Post Submitted successfully!",
+                        title: "Post Updated successfully!",
                         showConfirmButton: false,
                         timer: 1500
                     });
                 }
             })
     }
-
-
 
     return (
         <div className="mt-20 max-w-4xl mx-auto px-4 py-8">
@@ -66,7 +64,7 @@ const AddRoommateForm = () => {
             </div>
 
             <form
-                onSubmit={handleSubmit}
+                onSubmit={handleUpdatePost}
                 className="space-y-6 bg-base-100 shadow-md rounded p-6 border-2 border-secondary/30">
                 {/* Title */}
                 <div>
@@ -74,6 +72,7 @@ const AddRoommateForm = () => {
                     <input
                         type="text"
                         name="title"
+                        defaultValue={title}
                         required
                         placeholder="Looking for a roommate in NYC"
                         className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
@@ -87,6 +86,7 @@ const AddRoommateForm = () => {
                         <input
                             type="text"
                             name="location"
+                            defaultValue={location}
                             placeholder="123 Main St, NY, US."
                             required
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
@@ -97,6 +97,7 @@ const AddRoommateForm = () => {
                         <input
                             type="number"
                             name="amount"
+                            defaultValue={amount}
                             required
                             placeholder="e.g. 1200"
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
@@ -111,6 +112,8 @@ const AddRoommateForm = () => {
                         <div className='relative'>
                             <select
                                 name='room-type'
+                                defaultValue={roomType}
+                                required
                                 className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary">
                                 <option value="">Select Room Type</option>
                                 <option value="Single">Single</option>
@@ -128,6 +131,7 @@ const AddRoommateForm = () => {
                         <div className="relative">
                             <select
                                 name='availability'
+                                defaultValue={availability}
                                 required
                                 className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
                                 <option value="">Select Availability</option>
@@ -148,13 +152,18 @@ const AddRoommateForm = () => {
                     <div className="flex flex-wrap gap-3">
                         {['Pets', 'Smoking', 'Night Owl', 'Early Riser'].map((item) => (
                             <label key={item} className="flex items-center gap-2 text-accent">
-                                <input name="preferences" type="checkbox" value={item} className="checkbox checkbox-sm checkbox-secondary" />
+                                <input
+                                    name="preferences"
+                                    type="checkbox"
+                                    value={item}
+                                    defaultChecked={preferences?.includes(item)}
+                                    className="checkbox checkbox-sm checkbox-secondary"
+                                />
                                 <span>{item}</span>
                             </label>
                         ))}
                     </div>
                 </div>
-
 
                 {/* Description */}
                 <div>
@@ -162,6 +171,7 @@ const AddRoommateForm = () => {
                     <textarea
                         rows={10}
                         name="description"
+                        defaultValue={description}
                         required
                         className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
                         placeholder="Write something about the room or preferences..."
@@ -174,6 +184,7 @@ const AddRoommateForm = () => {
                     <input
                         type="text"
                         name="roomPhoto"
+                        defaultValue={roomPhoto}
                         required
                         placeholder="https://example.com/room.jpg"
                         className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
@@ -187,6 +198,8 @@ const AddRoommateForm = () => {
                         <input
                             type="text"
                             name="phone"
+                            defaultValue={phone}
+                            required
                             placeholder='+1 234 567 8900'
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
@@ -196,6 +209,7 @@ const AddRoommateForm = () => {
                         <input
                             type="text"
                             name="chatLink"
+                            defaultValue={chatLink}
                             placeholder='wa.me/username'
                             className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
@@ -225,27 +239,13 @@ const AddRoommateForm = () => {
                         />
                     </div>
                 </div>
-                {/* Likes (hidden, default 0) */}
-                <div className="md:col-span-2 hidden">
-                    <label className="block font-medium mb-1">
-                        Like Count (default: 0)
-                    </label>
-                    <input
-                        type="number"
-                        name="likes"
-                        value={0}
-                        readOnly
-                        className="input-base cursor-not-allowed"
-                    />
-                </div>
-
                 {/* Submit */}
                 <div className="text-center">
                     <button
                         type="submit"
                         className="btn btn-secondary text-base-100 px-6 py-2 rounded-md hover:bg-opacity-90 transition duration-300"
                     >
-                        <FaPlus /> Add Post
+                        <FaPlus /> Update Post
                     </button>
                 </div>
             </form>
@@ -253,4 +253,4 @@ const AddRoommateForm = () => {
     );
 };
 
-export default AddRoommateForm;
+export default UpdateRoommateInfo;
