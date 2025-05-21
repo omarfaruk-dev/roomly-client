@@ -37,7 +37,7 @@ const NavBar = () => {
     <>
       <NavLink to="/" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-secondary hover:text-secondary">Home</NavLink>
       <NavLink to="/add-roommate" className="px-3 md:px-2 lg:px-3 py-2 block text-secondary font-medium hover:text-secondary">Add to Find Roommate</NavLink>
-      <NavLink to="/browse-roommate" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-secondary hover:text-secondary">Browse Listing</NavLink>
+      <NavLink to="/browse-listing" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-secondary hover:text-secondary">Browse Listing</NavLink>
       <NavLink to="/my-listing" className="px-3 md:px-2 lg:px-3 py-2 block font-medium text-secondary hover:text-secondary">My Listing</NavLink>
     </>
   );

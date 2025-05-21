@@ -31,7 +31,7 @@ const RoommateDetails = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto px-4 py-8 mt-20">
             {/* Like Count at Top */}
             <div className="flex justify-end text-sm mb-2">
                 <span className='bg-secondary/15 text-secondary rounded-3xl p-y-1 px-2'>{likeCount} people interested in</span>
