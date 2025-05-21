@@ -77,7 +77,7 @@ const SignUp = () => {
                             photoURL: photo,
                         };
 
-                        setUser(updatedUser); // ✅ React state update
+                        setUser(updatedUser);
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -85,8 +85,6 @@ const SignUp = () => {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-
-                        // ✅ Now navigate
                         navigate(location.state || '/');
                     })
                     .catch((error) => {
@@ -98,31 +96,6 @@ const SignUp = () => {
                 console.error("Signup error:", error);
                 toast.error(emailErrorMessages[error.code] || 'Signup failed!');
             });
-
-
-        // createUser(email, password)
-        //     .then((userCredential) => {
-        //         const currentUser = userCredential.user;
-        //         navigate(location.state || '/');
-        //         if (currentUser) {
-        //             Swal.fire({
-        //                 position: "center",
-        //                 icon: "success",
-        //                 title: "Sign Up Success!",
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-
-        //         }
-        //         updateUser({ displayName: name, photoURL: photo }).then(() => {
-        //             setUser({ ...currentUser, displayName: name, photoURL: photo });
-        //         }).catch(error => {
-        //             toast.error(error.message || 'Something went wrong!');
-        //         });
-        //     })
-        //     .catch(error => {
-        //         toast.error(emailErrorMessages[error.code] || 'Something went wrong!');
-        //     });
 
     };
 
@@ -151,7 +124,7 @@ const SignUp = () => {
     // }
 
     return (
-        <div className="min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
+        <div className="mt-20 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
             {/* Left Column Image */}
             <div className="flex-1 flex items-center justify-center p-4">
                 <DotLottieReact
@@ -164,7 +137,7 @@ const SignUp = () => {
 
             {/* Right Column (Form) */}
             <div className="flex-1 w-full flex items-center justify-center p-8">
-                <div className="w-full max-w-md border-2 p-10 rounded-lg border-secondary shadow-md">
+                <div className="w-full max-w-md border-2  p-10 rounded-lg border-secondary/30 shadow-md">
                     <h2 className="text-3xl text-primary font-bold mb-6 text-center">Sign Up</h2>
 
                     <form

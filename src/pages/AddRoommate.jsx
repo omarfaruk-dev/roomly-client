@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const AddRoommateForm = () => {
 
-    const {user} = use(AuthContext);
+    const {user, setLoading} = use(AuthContext);
     console.log(user);
 
     const handleSubmit = (e) => {

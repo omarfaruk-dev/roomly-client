@@ -62,11 +62,13 @@ const router = createBrowserRouter([
                 element: <MyListing />
             },
 
-            {
-                path: '*',
-                Component: ErrorPage
-            }
+
         ]
+
+    },
+    {
+        path: '*',
+        Component: ErrorPage
     }
 ])
 
