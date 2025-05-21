@@ -9,6 +9,7 @@ import Spinner from "../components/ui/Spinner";
 import RoommateDetails from "../pages/RoommateDetails";
 import PrivateRoutes from "./PrivateRoutes";
 import BrowseListings from "../pages/browsListing/BrowsListing";
+import MyListing from "../pages/myListing/MyListing";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <Spinner />,
                 loader: () => fetch('http://localhost:3000/roommates'),
                 Component: BrowseListings,
+            },
+            {
+                path: '/my-listing',
+                hydrateFallbackElement: <Spinner />,
+                loader: () => fetch('http://localhost:3000/roommates'),
+                element: <MyListing />
             },
 
             {
