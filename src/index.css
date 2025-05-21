@@ -1,31 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Rancho&display=swap');
 
 @import "tailwindcss";
+
 @plugin "daisyui" {
-    themes: light --default;
+  themes: light --default;
 }
+
 @plugin "daisyui/theme" {
-    name: "light";
-    default: true;
-    --color-primary: #0D124B;
-    /* --color-secondary: #EB4899; */
-    --color-secondary: #5046E5;
-    --color-base-200: #F3F3F3;
-    --color-base-300: #E7E7E7;
-    --color-accent: #706F6F;
-  }
+  name: "light";
+  default: true;
+  --color-primary: #0D124B;
+  /* --color-secondary: #EB4899; */
+  --color-secondary: #5046E5;
+  --color-base-200: #F3F3F3;
+  --color-base-300: #E7E7E7;
+  --color-accent: #706F6F;
+}
 
-  * {
-    font-family: "Poppins", sans-serif;
-  }
+* {
+  font-family: "Poppins", sans-serif;
+}
 
-  a.active {
-    @apply text-secondary;
-  }
+a.active {
+  @apply text-secondary;
+}
+
+/* html, body {
+  height: 100%;
+  overflow: auto;
+} */
+
+.custom-bg {
+  background: linear-gradient(178.08deg, rgba(255, 255, 255, 0.3) -28.101%, rgba(0, 0, 0, 0) 128.101%), linear-gradient(169.25deg, rgba(255, 255, 255, 0.05) 24.246%, rgba(0, 0, 0, 0) 24.246%);
+}
 
 
-  /* input type number default arrow reset */
-  /* For Chrome, Safari, Edge, Opera */
+/* input type number default arrow reset */
+/* For Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;

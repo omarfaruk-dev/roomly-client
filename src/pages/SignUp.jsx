@@ -10,7 +10,7 @@ import Spinner from "../components/ui/Spinner";
 
 const SignUp = () => {
 
-    const {user, createUser, googleSignIn, setUser, updateUser } = use(AuthContext);
+    const { user, createUser, googleSignIn, setUser, updateUser } = use(AuthContext);
 
     const navigate = useNavigate()
 
@@ -64,29 +64,65 @@ const SignUp = () => {
         }
 
         //create user in the firebase
+        // Step 1: Create user in Firebase Auth
         createUser(email, password)
             .then((userCredential) => {
                 const currentUser = userCredential.user;
-                navigate(location.state || '/');
-                if (currentUser) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Sign Up Success!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
 
-                }
-                updateUser({ displayName: name, photoURL: photo }).then(() => {
-                    setUser({ ...user, displayName: name, photoURL: photo });
-                }).catch(error => {
-                    toast.error(error.message || 'Something went wrong!');
-                });
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        const updatedUser = {
+                            ...currentUser,
+                            displayName: name,
+                            photoURL: photo,
+                        };
+
+                        setUser(updatedUser); // ✅ React state update
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Sign Up Success!",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+
+                        // ✅ Now navigate
+                        navigate(location.state || '/');
+                    })
+                    .catch((error) => {
+                        console.error("Update user error:", error);
+                        toast.error(error.message || "Profile update failed!");
+                    });
             })
             .catch(error => {
-                toast.error(emailErrorMessages[error.code] || 'Something went wrong!');
+                console.error("Signup error:", error);
+                toast.error(emailErrorMessages[error.code] || 'Signup failed!');
             });
+
+
+        // createUser(email, password)
+        //     .then((userCredential) => {
+        //         const currentUser = userCredential.user;
+        //         navigate(location.state || '/');
+        //         if (currentUser) {
+        //             Swal.fire({
+        //                 position: "center",
+        //                 icon: "success",
+        //                 title: "Sign Up Success!",
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             });
+
+        //         }
+        //         updateUser({ displayName: name, photoURL: photo }).then(() => {
+        //             setUser({ ...currentUser, displayName: name, photoURL: photo });
+        //         }).catch(error => {
+        //             toast.error(error.message || 'Something went wrong!');
+        //         });
+        //     })
+        //     .catch(error => {
+        //         toast.error(emailErrorMessages[error.code] || 'Something went wrong!');
+        //     });
 
     };
 
@@ -107,12 +143,12 @@ const SignUp = () => {
 
 
 
-     if(user) {
-        return <>
-        <Spinner/>
-        {navigate('/')}
-        </>
-    }
+    // if (user) {
+    //     return <>
+    //         <Spinner />
+    //         {navigate('/')}
+    //     </>
+    // }
 
     return (
         <div className="min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">

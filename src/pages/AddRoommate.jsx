@@ -21,6 +21,7 @@ const AddRoommateForm = () => {
         const preferences = formData.getAll('preferences');
         newPost.preferences = preferences;
         console.log(newPost);
+        
 
         //send to db
         fetch('http://localhost:3000/roommates', {
@@ -48,7 +49,7 @@ const AddRoommateForm = () => {
 
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="mt-20 max-w-4xl mx-auto px-4 py-8">
             {/* Top Bar: Back | Title | View All */}
             <div className="flex items-center justify-between mb-6">
 

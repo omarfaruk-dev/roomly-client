@@ -11,7 +11,7 @@ const Banner = () => {
             {/* Black overlay */}
             <div
                 className="absolute inset-0 z-10"
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }} // 50% transparent black
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} // 50% transparent black
             ></div>
 
             {/* Content */}
