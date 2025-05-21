@@ -1,6 +1,6 @@
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -104,24 +104,26 @@ const SignUp = () => {
         googleSignIn()
             .then(result => {
                 setUser(result.user);
-                Navigate(`${location.state ? location.state : '/'}`)
+                navigate(`${location.state ? location.state : '/'}`)
                 toast.success('successfully login with google')
             })
             .catch(error => {
                 const errorMessage = error.message;
                 toast.error(errorMessage || 'Something went wrong!');
-                console.log(error.message);
+                console.log(error);
             })
     }
 
+    //if already sing in return to previous page
+     useEffect(() => {
+    if (user) {
+      navigate(location.state ? location.state : '/');
+    }
+  }, [user, navigate]);
 
-
-    // if (user) {
-    //     return <>
-    //         <Spinner />
-    //         {navigate('/')}
-    //     </>
-    // }
+  if (user) {
+    return <Spinner />;
+  }
 
     return (
         <div className="mt-20 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">

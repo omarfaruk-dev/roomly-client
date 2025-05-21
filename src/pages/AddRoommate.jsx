@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const AddRoommateForm = () => {
 
-    const {user, setLoading} = use(AuthContext);
+    const { user } = use(AuthContext);
     console.log(user);
 
     const handleSubmit = (e) => {
@@ -21,7 +21,7 @@ const AddRoommateForm = () => {
         const preferences = formData.getAll('preferences');
         newPost.preferences = preferences;
         console.log(newPost);
-        
+
 
         //send to db
         fetch('http://localhost:3000/roommates', {

@@ -2,17 +2,18 @@ import { Link, useLocation, useNavigate } from "react-router";
 // import signInImg from '../assets/signin.svg'
 import { FcGoogle } from "react-icons/fc";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import Spinner from "../components/ui/Spinner";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import Spinner from "../components/ui/Spinner";
 
 const SignIn = () => {
 
     // const { user, signInUser, googleSignIn, setUser } = use
-    const { signInUser, setUser } = use(AuthContext);
+    const { user, signInUser,googleSignIn, setUser } = use(AuthContext);
 
 
     //use location for path
@@ -36,14 +37,16 @@ const SignIn = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword)
     };
+    //if already logged in then return to previous page.
+    useEffect(() => {
+        if (user) {
+            navigate(location.state ? location.state : '/');
+        }
+    }, [user, navigate, location.state]);
 
-    //if user already logged in
-    // if (user) {
-    //     return <>
-    //         <Spinner/>
-    //         {navigate(`${location.state ? location.state : '/'}`)}
-    //     </>
-    // }
+    if (user) {
+        return <Spinner />;
+    }
 
     const handleSignin = (e) => {
         e.preventDefault();
@@ -58,7 +61,6 @@ const SignIn = () => {
                 console.log(currentUser);
                 setUser(currentUser)
                 setError('');
-                // alert('success')
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -75,6 +77,21 @@ const SignIn = () => {
                 toast.error(errorMessages)
             })
 
+    }
+
+     //google signin
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                setUser(result.user);
+                navigate(`${location.state ? location.state : '/'}`)
+                toast.success('successfully login with google')
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage || 'Something went wrong!');
+                console.log(error);
+            })
     }
 
     return (
@@ -144,7 +161,9 @@ const SignIn = () => {
                     <div className="divider">OR</div>
 
                     {/* Sign in with Google */}
-                    <button className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded">
+                    <button 
+                    onClick={handleGoogleSignIn}
+                    className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded">
                         <FcGoogle />
                         Sign in with Google
                     </button>

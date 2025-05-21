@@ -22,7 +22,7 @@ const router = createBrowserRouter([
                 path: '/',
                 index: true,
                 hydrateFallbackElement: <Spinner />,
-                loader: () => fetch('http://localhost:3000/roommates'),
+                loader: () => fetch('http://localhost:3000/featured-roommates'),
                 Component: Home,
             },
             {
@@ -59,9 +59,8 @@ const router = createBrowserRouter([
                 path: '/my-listing',
                 hydrateFallbackElement: <Spinner />,
                 loader: () => fetch('http://localhost:3000/roommates'),
-                element: <MyListing />
+                element: <PrivateRoutes><MyListing /></PrivateRoutes>
             },
-
 
         ]
 

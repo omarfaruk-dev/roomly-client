@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 
 const googleProvider = new GoogleAuthProvider();
+
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
