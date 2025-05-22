@@ -57,13 +57,13 @@ const MyListing = () => {
             {myListings.length === 0 ? (
                 <div className="flex flex-col items-center justify-center">
                     <DotLottieReact
-                    src="https://lottie.host/e925104f-0bf4-432b-b7b5-6f6d3c7daba9/HfcdVb090q.lottie"
+                        src="https://lottie.host/e925104f-0bf4-432b-b7b5-6f6d3c7daba9/HfcdVb090q.lottie"
 
-                    loop
-                    autoplay
-                    style={{ width: '100%', maxWidth: '750px' }}
-                />
-                <p className="text-primary text-xl text-center">You don't have roommate finding list. Add first</p>
+                        loop
+                        autoplay
+                        style={{ width: '100%', maxWidth: '750px' }}
+                    />
+                    <p className="text-primary text-xl text-center">You don't have roommate finding list. Add first</p>
                 </div>
             ) :
                 (
@@ -79,7 +79,7 @@ const MyListing = () => {
                             </thead>
                             <tbody>
                                 {myListings.map((item) => (
-                                    <tr key={item._id} className="hover:bg-gray-50 transition duration-200">
+                                    <tr key={item._id} className="hover:bg-secondary/5 transition duration-200">
                                         <td className="px-4 py-3 border-b border-secondary/10">
                                             <img
                                                 src={item.roomPhoto}

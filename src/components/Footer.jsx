@@ -3,49 +3,53 @@ import { Link } from "react-router";
 
 const Footer = () => {
     return (
-        <footer className="bg-secondary/5 text-accent py-10 mt-">
-            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-sm">
-
+        <footer className="bg-secondary/5 text-accent pt-12 pb-6">
+            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 text-sm items-start justify-items-center">
+                {/* Brand & Mission */}
+                <div>
+                    <div className="flex items-center gap-2 mb-3">
+                        <img src="/logo-small.png" alt="Roomly Logo" className="w-8 h-8" />
+                        <span className="text-xl font-bold text-primary">Roomly</span>
+                    </div>
+                    <p className="text-accent text-sm leading-relaxed mb-2">Roomly makes finding a safe, compatible roommate or room easy and secure. Built for trust, privacy, and real connections.</p>
+                </div>
                 {/* Contact Section */}
                 <div>
-                    <h3 className="text-lg font-semibold mb-2 text-primary">Contact Us</h3>
-                    <p>Email: support@roomly.com</p>
-                    <p>Phone: +1 (800) 123-4567</p>
-                    <p>Address: 123 Room St, WA, USA</p>
+                    <h3 className="text-lg font-semibold mb-2 text-primary">Contact</h3>
+                    <p className="mb-1">support@roomly.com</p>
+                    <p className="mb-1">+1 (800) 123-4567</p>
+                    <p>123 Room St, WA, USA</p>
                 </div>
-
-                {/* Terms Section */}
+                {/* Quick Links */}
                 <div>
-                    <h3 className="text-lg font-semibold mb-2 text-primary">Legal</h3>
-                    <ul>
-                        <li>
-                            <Link to="/terms" className="hover:text-secondary">Terms & Conditions</Link>
-                        </li>
-                        <li>
-                            <Link to="/privacy" className="hover:text-secondary">Privacy Policy</Link>
-                        </li>
+                    <h3 className="text-lg font-semibold mb-2 text-primary">Quick Links</h3>
+                    <ul className="space-y-1">
+                        <li><Link to="/" className="hover:text-secondary">Home</Link></li>
+                        <li><Link to="/browse-listing" className="hover:text-secondary">Browse Listings</Link></li>
+                        <li><Link to="/add-roommate" className="hover:text-secondary">Add Roommate</Link></li>
+                        <li><Link to="/my-listing" className="hover:text-secondary">My Listings</Link></li>
                     </ul>
                 </div>
-
                 {/* Social Media Section */}
-                <div>
-                    <h3 className="text-lg font-semibold mb-2 text-primary">Follow Us</h3>
-                    <div className="flex gap-4 text-lg">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary">
-                            <FaFacebookF />
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary">
-                            <FaTwitter />
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary">
-                            <FaInstagram />
-                        </a>
+                <div className="flex flex-col items-center">
+                    <h3 className="text-lg font-semibold mb-2 text-primary">Connect</h3>
+                    <div className="flex gap-4 text-lg mb-1">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary"><FaFacebookF /></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary"><FaTwitter /></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary"><FaInstagram /></a>
                     </div>
                 </div>
             </div>
-
-            <div className="pt-5 mt-5 text-center text-sm text-accent border-t border-secondary/20">
-                © {new Date().getFullYear()} Roomly. All rights reserved.
+            {/* Bottom: Terms/Privacy row, then copyright row */}
+            <div className="pt-8 mt-8 text-center text-xs text-accent border-t border-secondary/10 flex flex-col items-center gap-2">
+                <div className="flex flex-wrap justify-center gap-4">
+                    <Link to="/terms" className="hover:text-secondary underline">Terms & Conditions</Link>
+                    <span className="text-secondary/30">|</span>
+                    <Link to="/privacy" className="hover:text-secondary underline">Privacy Policy</Link>
+                </div>
+                <div>
+                    © {new Date().getFullYear()} Roomly. All rights reserved.
+                </div>
             </div>
         </footer>
     );

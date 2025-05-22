@@ -17,7 +17,7 @@ const FeaturedCard = ({ mate }) => {
 
   return (
    
-    <div className="rounded overflow-hidden border border-secondary/15 bg-base-100 shadow-md hover:shadow-lg transition duration-300 flex flex-col">
+    <div className="rounded overflow-hidden border-2 border-secondary/20 bg-base-100 shadow-md hover:shadow-lg transition duration-300 flex flex-col">
       <img
         src={roomPhoto}
         alt={title}
@@ -63,7 +63,7 @@ const FeaturedCard = ({ mate }) => {
         </div>
 
         <div className="my-5 mx-auto">
-          <Link className="btn btn-secondary text-base-100 " to={`/roommate-details/${_id}`}>See Details</Link>
+          <Link className="btn btn-secondary text-base-200 " to={`/roommate-details/${_id}`}>See Details</Link>
         </div>
       </div>
     </div>

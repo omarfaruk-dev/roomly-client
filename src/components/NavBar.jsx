@@ -44,8 +44,7 @@ const NavBar = () => {
 
   return (
     // <nav className="bg-secondary/20 shadow fixed w-full mx-auto top-0 z-50 backdrop-blur-xs">
-    <nav className={`fixed w-full top-0 z-50 backdrop-blur-2xl transition-colors duration-300 ${scrolled ? "bg-secondary/5 shadow-md" : "bg-secondary/5"
-      }`}>
+    <nav className={`fixed w-full top-0 z-50 bg-base-100/95 backdrop-blur-2xl transition-colors duration-300 ${scrolled ? "shadow-md" : ""}`}>
 
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo */}
@@ -80,7 +79,7 @@ const NavBar = () => {
                 </div>
               )}
 
-              <div className="absolute right-0 border border-secondary/20 w-40 bg-secondary/5 backdrop-blur-2xl rounded shadow 
+              <div className="absolute right-0 border border-secondary/20 w-40 bg-base-100/95 backdrop-blur-2xl rounded shadow 
       origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-200 ease-out 
       transform z-50">
                 <p className="px-4 py-2 font-medium text-primary">{user.displayName}</p>

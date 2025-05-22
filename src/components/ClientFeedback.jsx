@@ -91,7 +91,7 @@ const TestimonialSlider = () => {
             >
                 {testimonials.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <div className="h-[400px] bg-gradient-to-br from-secondary/30 via-base-100 to-pink-50 p-6 rounded-xl shadow-xl flex flex-col justify-between transition-transform hover:scale-[1.02]">
+                        <div className="h-[400px] bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 p-6 rounded-xl shadow-xl flex flex-col justify-between transition-transform hover:scale-[1.02]">
                             <div className="flex justify-center">
                                 <img
                                     src={item.photo}
@@ -101,7 +101,7 @@ const TestimonialSlider = () => {
                             </div>
                             <div>
                                 <h3 className="mt-4 text-xl font-semibold">{item.name}</h3>
-                                <p className="text-green-600 font-medium">{item.role}</p>
+                                <p className="text-secondary font-medium">{item.role}</p>
 
                                 <div className="flex justify-center mt-2 mb-2">
                                     {Array.from({ length: item.rating }).map((_, i) => (
@@ -109,7 +109,7 @@ const TestimonialSlider = () => {
                                     ))}
                                 </div>
 
-                                <p className="italic text-gray-600 text-sm px-2">“{item.quote}”</p>
+                                <p className="italic text-accent text-sm px-2">“{item.quote}”</p>
                             </div>
                             <div className="flex justify-center mt-4">{item.social}</div>
                         </div>
