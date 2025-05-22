@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import { FaArrowLeft, FaArrowRight, FaChevronDown, FaPlus } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaChevronDown, FaList, FaPlus } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
@@ -22,11 +22,10 @@ const AddRoommateForm = () => {
         // Get multiple checkbox values
         const preferences = formData.getAll('preferences');
         newPost.preferences = preferences;
-        console.log(newPost);
 
 
         //send to db
-        fetch('http://localhost:3000/roommates', {
+        fetch('https://roomly-server.vercel.app/roommates', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -35,7 +34,6 @@ const AddRoommateForm = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -54,7 +52,7 @@ const AddRoommateForm = () => {
             <div className="flex justify-center mb-6">
                 <Fade>
                 <h2 className="text-center text-2xl text-primary md:text-3xl font-bold">
-                    Add to Find<span className="text-secondary">Room/Roommate</span> Listings
+                    Add to Find <span className="text-secondary">Room / Roommate</span> Listings
                 </h2>
             </Fade>
             </div>
@@ -62,8 +60,8 @@ const AddRoommateForm = () => {
                 <button onClick={()=>navigate(-1)} className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
                     <FaArrowLeft /> Go Back
                 </button>
-                <Link to='/browse-roommate' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
-                    View All <FaArrowRight />
+                <Link to='/browse-listing' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
+                    View All <FaList/>
                 </Link>
             </div>
 

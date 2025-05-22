@@ -45,7 +45,10 @@ const SignIn = () => {
     }, [user, navigate, location.state]);
 
     if (user) {
-        return <Spinner />;
+        // Only redirect if not in error state
+        if (!error) {
+            return <Spinner />;
+        }
     }
 
     const handleSignin = (e) => {
@@ -77,8 +80,12 @@ const SignIn = () => {
             })
             .catch(error => {
                 const message = errorMessages[error.code] || "An unexpected error occurred.";
-                setError(message)
-                toast.error(errorMessages)
+                setError(message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${message}`,
+                });
             })
 
     }
@@ -94,7 +101,6 @@ const SignIn = () => {
             .catch(error => {
                 const errorMessage = error.message;
                 toast.error(errorMessage || 'Something went wrong!');
-                console.log(error);
             })
     }
 

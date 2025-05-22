@@ -1,4 +1,4 @@
-import { FaPhoneAlt, FaFacebookMessenger, FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router";
 
 const FeaturedCard = ({ mate }) => {
@@ -16,13 +16,15 @@ const FeaturedCard = ({ mate }) => {
   } = mate;
 
   return (
-   
     <div className="rounded-md overflow-hidden border-2 border-secondary/20 bg-base-200 shadow-md hover:shadow-lg transition duration-300 flex flex-col">
-      <img
-        src={roomPhoto}
-        alt={title}
-        className="w-full h-60 object-cover transform transition-transform duration-500 ease-in-out hover:scale-105"
-      />
+      <div className="relative group overflow-hidden">
+        <img
+          src={roomPhoto}
+          alt={title}
+          className="w-full h-60 object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-90"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      </div>
       <div className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start -gap-5">
           <h2 className="text-xl font-semibold text-primary">{title}</h2>

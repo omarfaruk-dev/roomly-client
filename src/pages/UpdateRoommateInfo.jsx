@@ -1,8 +1,10 @@
 import { use } from 'react';
 import { FaArrowLeft, FaArrowRight, FaChevronDown, FaPlus } from 'react-icons/fa';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
+import { Fade } from 'react-awesome-reveal';
+import { GrUpdate } from 'react-icons/gr';
 
 const UpdateRoommateInfo = () => {
     const allData = useLoaderData();
@@ -11,6 +13,7 @@ const UpdateRoommateInfo = () => {
         description, phone, chatLink, } = allData;
 
     const { user } = use(AuthContext);
+    const navigate = useNavigate();
 
     const handleUpdatePost = (e) => {
         e.preventDefault();
@@ -21,11 +24,10 @@ const UpdateRoommateInfo = () => {
         // Get multiple checkbox values
         const preferences = formData.getAll('preferences');
         updatePost.preferences = preferences;
-        console.log(updatePost);
 
 
         //Update roommate info and send to db
-        fetch(`http://localhost:3000/roommates/${_id}`, {
+        fetch(`https://roomly-server.vercel.app/roommates/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -47,25 +49,27 @@ const UpdateRoommateInfo = () => {
     }
 
     return (
-        <div className="mt-16 max-w-4xl mx-auto px-4 py-8">
+        <div className="mt-16 max-w-4xl mx-auto px-4 py-20">
             {/* Top Bar: Back | Title | View All */}
-            <div className="flex items-center justify-between mb-6">
-
-                <h2 className="text-xl md:text-3xl font-bold text-primary text-center flex-1">Add to Find Roommate</h2>
-
+            <div className="flex justify-center mb-6">
+                <Fade>
+                    <h2 className="text-center text-2xl text-primary md:text-3xl font-bold">
+                        Update <span className="text-secondary">Room / Roommate</span> Listings
+                    </h2>
+                </Fade>
             </div>
             <div className='flex justify-between items-center py-5'>
-                <Link to='/' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
+                <button onClick={()=>navigate(-1)} to='/' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
                     <FaArrowLeft /> Go Back
-                </Link>
-                <Link to='/browse-roommate' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
-                    View All <FaArrowRight />
+                </button>
+                <Link to={`/roommate-details/${_id}`} className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
+                    View Update  <GrUpdate />
                 </Link>
             </div>
 
             <form
                 onSubmit={handleUpdatePost}
-                className="space-y-6 bg-base-100 shadow-md rounded-md p-6 border-2 border-secondary/30">
+                className="space-y-6 bg-base-200 shadow-md rounded-md p-6 border-2 border-secondary/30">
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Title</label>

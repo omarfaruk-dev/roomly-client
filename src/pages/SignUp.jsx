@@ -10,6 +10,7 @@ import Spinner from "../components/ui/Spinner";
 
 const SignUp = () => {
 
+    //data from context
     const { user, createUser, googleSignIn, setUser, updateUser } = use(AuthContext);
     console.log(user);
     const navigate = useNavigate()
@@ -44,8 +45,8 @@ const SignUp = () => {
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
-        const formData = { name, email, password, photo }
-        console.log(formData);
+        // const formData = { name, email, password, photo }
+        // console.log(formData);
         //validation
         const isValid = {
             length: password.length >= 6,
@@ -85,7 +86,13 @@ const SignUp = () => {
                     })
                     .catch((error) => {
                         console.error("Update user error:", error);
-                        toast.error(error.message || "Profile update failed!");
+                        const message = error.message;
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: `${message} || Something went wrong!`,
+                        });
+                        // toast.error(error.message || "Profile update failed!");
                     });
             })
             .catch(error => {
@@ -119,7 +126,6 @@ const SignUp = () => {
             .catch(error => {
                 const errorMessage = error.message;
                 toast.error(errorMessage || 'Something went wrong!');
-                console.log(error);
             })
     }
 

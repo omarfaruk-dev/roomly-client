@@ -23,17 +23,16 @@ const MyListing = () => {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#dc3741', // your primary color
-            cancelButtonColor: '#545454',  // your secondary color
+            cancelButtonColor: '#5F6CE0',  // your secondary color
             confirmButtonText: 'Yes, delete it!',
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:3000/roommates/${id}`, {
+                    fetch(`https://roomly-server.vercel.app/roommates/${id}`, {
                         method: 'DELETE',
                     })
                         .then((res) => res.json())
                         .then(data => {
-                            console.log(data.deletedCount);
                             if (data.deletedCount > 0) {
                                 Swal.fire({
                                     position: "center",
@@ -61,15 +60,21 @@ const MyListing = () => {
             </Fade>
 
             {myListings.length === 0 ? (
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center py-16">
                     <DotLottieReact
                         src="https://lottie.host/e925104f-0bf4-432b-b7b5-6f6d3c7daba9/HfcdVb090q.lottie"
-
                         loop
                         autoplay
-                        style={{ width: '100%', maxWidth: '750px' }}
+                        style={{ width: '100%', maxWidth: '500px' }}
                     />
-                    <p className="text-primary text-xl text-center">You don't have roommate finding list. Add first</p>
+                    <h3 className="text-2xl md:text-3xl font-bold text-primary mt-8 mb-2 text-center">No Listings Found</h3>
+                    <p className="text-accent text-lg mb-6 text-center max-w-md">You haven't added any room or roommate listings yet. Start by creating your first listing to find your perfect match!</p>
+                    <Link
+                        to="/add-roommate"
+                        className="btn btn-secondary btn-lg px-8 py-3 font-semibold shadow hover:scale-105 transition-all duration-200"
+                    >
+                        + Add New Listing
+                    </Link>
                 </div>
             ) :
                 (
