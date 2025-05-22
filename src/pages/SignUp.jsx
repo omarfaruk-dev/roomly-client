@@ -126,7 +126,7 @@ const SignUp = () => {
   }
 
     return (
-        <div className="mt-20 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
+        <div className="mt-16 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
             {/* Left Column Image */}
             <div className="flex-1 flex items-center justify-center p-4">
                 <DotLottieReact
@@ -155,7 +155,7 @@ const SignUp = () => {
                                 name="name"
                                 placeholder="Your name"
                                 required
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
                         {/* Email */}
@@ -169,7 +169,7 @@ const SignUp = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
                         {/* photo */}
@@ -181,7 +181,7 @@ const SignUp = () => {
                                 type="text"
                                 name="photo"
                                 placeholder="Photo Url"
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
 
@@ -230,7 +230,7 @@ const SignUp = () => {
 
 
                         {/* Sign In Button */}
-                        <button type="submit" className="btn btn-secondary text-white w-full rounded mt-4">
+                        <button type="submit" className="btn btn-secondary text-white w-full rounded-md mt-4">
                             Sign Up
                         </button>
                     </form>

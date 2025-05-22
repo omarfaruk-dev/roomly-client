@@ -2,7 +2,7 @@ import { Fade, JackInTheBox, Slide } from "react-awesome-reveal";
 
 
 const HowItWorks = () => (
-    <section className="max-w-7xl mx-auto px-4 py-20">
+    <section className="max-w-7xl mx-auto px-4 pt-30">
         <Slide direction="left" delay={300} duration={1000}>
             <h2 className="text-center text-3xl text-primary md:text-4xl font-bold mb-2">
                 How <span className="text-secondary">Roomly</span> Works
@@ -18,7 +18,7 @@ const HowItWorks = () => (
             {/* Left: Steps 1 & 2 */}
             <div className="flex flex-col gap-10">
                 <Slide direction="left" delay={300} duration={1000}>
-                    <div className="flex items-start gap-4 bg-base-100 rounded-xl shadow-md p-6 border-l-4 border-secondary/15 hover:scale-102 transition-transform">
+                    <div className="flex items-start gap-4 bg-base-200 rounded-xl shadow-md p-6 border-l-4 hover:border-secondary border-secondary/15 hover:scale-102 transition-all">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/15 text-2xl font-bold text-secondary shadow-sm">
                             1
                         </div>
@@ -27,7 +27,7 @@ const HowItWorks = () => (
                             <p className="text-accent text-sm">Sign up in seconds and set up your profile to get started.</p>
                         </div>
                     </div>
-                    <div className="flex items-start gap-4 bg-base-100 rounded-xl shadow-md p-6 border-l-4 border-primary/20 hover:scale-102 transition-transform">
+                    <div className="flex items-start gap-4 bg-base-200 rounded-xl shadow-md p-6 border-l-4 hover:border-primary border-primary/15 hover:scale-102 transition-all">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary shadow-sm">
                             2
                         </div>
@@ -37,8 +37,6 @@ const HowItWorks = () => (
                         </div>
                     </div>
                 </Slide>
-
-
 
             </div>
             {/* Center: Image */}
@@ -51,7 +49,7 @@ const HowItWorks = () => (
             {/* Right: Steps 3 & 4 */}
             <Slide direction="right" delay={300} duration={1000}>
                 <div className="flex flex-col gap-10">
-                    <div className="flex items-start gap-4 bg-base-100 rounded-xl shadow-md p-6 border-l-4 border-secondary/20 hover:scale-102 transition-transform">
+                    <div className="flex items-start gap-4 bg-base-200 rounded-xl shadow-md p-6 border-l-4 hover:border-secondary border-secondary/15 hover:scale-102 transition-all">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/15 text-2xl font-bold text-secondary shadow-sm">
                             3
                         </div>
@@ -60,7 +58,7 @@ const HowItWorks = () => (
                             <p className="text-accent text-sm">Message safely through Roomly to find your best match.</p>
                         </div>
                     </div>
-                    <div className="flex items-start gap-4 bg-base-100 rounded-xl shadow-md p-6 border-l-4 border-primary/20 hover:scale-102 transition-transform">
+                    <div className="flex items-start gap-4 bg-base-200 rounded-xl shadow-md p-6 border-l-4 hover:border-primary border-primary/15 hover:scale-102 transition-all">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary shadow-sm">
                             4
                         </div>

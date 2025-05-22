@@ -32,7 +32,7 @@ const HeroSlider = () => {
   ];
 
   return (
-    <div className="mt-20 max-w-7xl mx-auto rounded h-[400px]">
+    <div className="mt-16 max-w-7xl mx-auto rounded-md h-[400px]">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation

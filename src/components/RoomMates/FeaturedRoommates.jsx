@@ -7,7 +7,7 @@ const FeaturedRoommates = () => {
   const roommates = useLoaderData();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 mt-20">
+    <div className="max-w-7xl mx-auto px-4 pt-20">
       <Slide direction="left" delay={300} duration={1000}>
         <h2 className="text-center text-3xl text-primary md:text-4xl font-bold mb-2">
           Our Featured <span className="text-secondary">
@@ -37,7 +37,8 @@ const FeaturedRoommates = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {roommates.map(mate => (
-          <FeaturedCard key={mate._id} mate={mate} />
+          <Slide direction="up" delay={300} duration={1000} triggerOnce><FeaturedCard key={mate._id} mate={mate} /></Slide>
+
         ))}
       </div>
     </div>

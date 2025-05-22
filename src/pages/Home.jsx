@@ -8,8 +8,9 @@ import { useEffect, useState } from 'react';
 
 const Home = () => {
     const [theme, setTheme] = useState(() => {
-        // Default to light mode on first load
-        return 'light';
+        // Check localStorage for saved theme, default to light
+        const savedTheme = localStorage.getItem('roomly-theme');
+        return savedTheme ? savedTheme : 'light';
     });
 
     useEffect(() => {
@@ -19,6 +20,8 @@ const Home = () => {
         // Set data-theme on <body> (DaisyUI prefers <body> for theme switching)
         document.body.setAttribute('data-theme', theme);
         document.body.style.colorScheme = theme;
+        // Persist theme in localStorage
+        localStorage.setItem('roomly-theme', theme);
     }, [theme]);
 
     const toggleTheme = () => {

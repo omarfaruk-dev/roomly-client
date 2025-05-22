@@ -5,6 +5,7 @@ import { use, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { Fade } from "react-awesome-reveal";
 
 const MyListing = () => {
     const { user } = use(AuthContext);
@@ -51,8 +52,13 @@ const MyListing = () => {
     };
 
     return (
-        <div className="max-w-7xl min-h-[calc(100vh-300px)] mx-auto px-4 py-10 mt-20">
-            <h2 className="ext-xl md:text-3xl font-bold text-primary text-center mb-6">My Roommate Listings</h2>
+        <div className="max-w-7xl min-h-[calc(100vh-300px)] mx-auto mt-16 px-4 py-20">
+            <title>My Roommate Listing | Roomly</title>
+            <Fade>
+                <h2 className="text-center text-2xl text-primary md:text-3xl font-bold mb-10">
+                    My <span className="text-secondary">Room/Roommate</span> Listings
+                </h2>
+            </Fade>
 
             {myListings.length === 0 ? (
                 <div className="flex flex-col items-center justify-center">
@@ -67,8 +73,8 @@ const MyListing = () => {
                 </div>
             ) :
                 (
-                    <div className="overflow-x-auto shadow-md rounded-lg">
-                        <table className="min-w-full bg-base-100 text-left border border-secondary/10">
+                    <div className="overflow-x-auto shadow-md rounded">
+                        <table className="min-w-full bg-base-200 text-left border border-secondary/10">
                             <thead className="bg-secondary/10 text-secondary text-sm">
                                 <tr>
                                     <th className="px-4 py-3 border-b border-secondary/10">Photo</th>

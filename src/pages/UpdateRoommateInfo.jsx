@@ -47,7 +47,7 @@ const UpdateRoommateInfo = () => {
     }
 
     return (
-        <div className="mt-20 max-w-4xl mx-auto px-4 py-8">
+        <div className="mt-16 max-w-4xl mx-auto px-4 py-8">
             {/* Top Bar: Back | Title | View All */}
             <div className="flex items-center justify-between mb-6">
 
@@ -65,7 +65,7 @@ const UpdateRoommateInfo = () => {
 
             <form
                 onSubmit={handleUpdatePost}
-                className="space-y-6 bg-base-100 shadow-md rounded p-6 border-2 border-secondary/30">
+                className="space-y-6 bg-base-100 shadow-md rounded-md p-6 border-2 border-secondary/30">
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Title</label>
@@ -75,7 +75,7 @@ const UpdateRoommateInfo = () => {
                         defaultValue={title}
                         required
                         placeholder="Looking for a roommate in NYC"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                        className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                     />
                 </div>
 
@@ -89,7 +89,7 @@ const UpdateRoommateInfo = () => {
                             defaultValue={location}
                             placeholder="123 Main St, NY, US."
                             required
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -100,7 +100,7 @@ const UpdateRoommateInfo = () => {
                             defaultValue={amount}
                             required
                             placeholder="e.g. 1200"
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const UpdateRoommateInfo = () => {
                                 name='room-type'
                                 defaultValue={roomType}
                                 required
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary">
                                 <option value="">Select Room Type</option>
                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
@@ -133,7 +133,7 @@ const UpdateRoommateInfo = () => {
                                 name='availability'
                                 defaultValue={availability}
                                 required
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
                                 <option value="">Select Availability</option>
                                 <option value="available">Available</option>
                                 <option value="not-available">Not Available</option>
@@ -173,7 +173,7 @@ const UpdateRoommateInfo = () => {
                         name="description"
                         defaultValue={description}
                         required
-                        className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
+                        className="input input-bordered w-full h-30 rounded-md focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
                         placeholder="Write something about the room or preferences..."
                     ></textarea>
 
@@ -187,7 +187,7 @@ const UpdateRoommateInfo = () => {
                         defaultValue={roomPhoto}
                         required
                         placeholder="https://example.com/room.jpg"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                        className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                     />
                 </div>
 
@@ -201,7 +201,7 @@ const UpdateRoommateInfo = () => {
                             defaultValue={phone}
                             required
                             placeholder='+1 234 567 8900'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -211,7 +211,7 @@ const UpdateRoommateInfo = () => {
                             name="chatLink"
                             defaultValue={chatLink}
                             placeholder='wa.me/username'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
@@ -225,7 +225,7 @@ const UpdateRoommateInfo = () => {
                             name="userName"
                             value={user?.displayName}
                             readOnly
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -235,7 +235,7 @@ const UpdateRoommateInfo = () => {
                             name="email"
                             value={user?.email}
                             readOnly
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FaStar, FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { Slide } from "react-awesome-reveal";
 
 const testimonials = [
     {
@@ -67,14 +68,19 @@ const testimonials = [
 
 const TestimonialSlider = () => {
     return (
-        <div className="bg-base-100 py-20 px-4 text-center">
-            <h2 className="text-3xl text-primary md:text-4xl font-bold mb-2">
-                What Our <span className="text-secondary">Customers Are Saying</span>
-            </h2>
-            <p className="text-accent mb-12 max-w-2xl mx-auto">
-                Hear directly from our happy users who found the perfect room or roommate through Roomly.
-                Real stories, real matches — feedback
-            </p>
+        <div className="bg-base-100 py-30 px-4 text-center">
+            <Slide direction="left" delay={300} duration={1000}>
+                <h2 className="text-3xl text-primary md:text-4xl font-bold mb-2">
+                    What Our <span className="text-secondary">Customers Are Saying</span>
+                </h2>
+            </Slide>
+            <Slide direction="right" delay={300} duration={1000}>
+                <p className="text-accent mb-12 max-w-2xl mx-auto">
+                    Hear directly from our happy users who found the perfect room or roommate through Roomly.
+                    Real stories, real matches — feedback
+                </p>
+            </Slide>
+
 
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
@@ -91,7 +97,7 @@ const TestimonialSlider = () => {
             >
                 {testimonials.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <div className="h-[400px] bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 p-6 rounded-xl shadow-xl flex flex-col justify-between transition-transform hover:scale-[1.02]">
+                        <div className="h-[400px] bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 p-6 rounded-md overflow-hidden shadow-xl flex flex-col justify-between transition-transform hover:scale-101 hover:rounded-md">
                             <div className="flex justify-center">
                                 <img
                                     src={item.photo}

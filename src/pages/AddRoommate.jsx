@@ -1,13 +1,15 @@
 import React, { use } from 'react';
 import { FaArrowLeft, FaArrowRight, FaChevronDown, FaPlus } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
+import { Fade, Slide } from 'react-awesome-reveal';
 
 const AddRoommateForm = () => {
 
     const { user } = use(AuthContext);
-    console.log(user);
+    
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,19 +49,19 @@ const AddRoommateForm = () => {
     }
 
 
-
     return (
-        <div className="mt-20 max-w-4xl mx-auto px-4 py-8">
-            {/* Top Bar: Back | Title | View All */}
-            <div className="flex items-center justify-between mb-6">
-
-                <h2 className="text-xl md:text-3xl font-bold text-primary text-center flex-1">Add to Find Roommate</h2>
-
+        <div className="mt-16 max-w-4xl mx-auto px-4 py-20">
+            <div className="flex justify-center mb-6">
+                <Fade>
+                <h2 className="text-center text-2xl text-primary md:text-3xl font-bold">
+                    Add to Find<span className="text-secondary">Room/Roommate</span> Listings
+                </h2>
+            </Fade>
             </div>
             <div className='flex justify-between items-center py-5'>
-                <Link to='/' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
+                <button onClick={()=>navigate(-1)} className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
                     <FaArrowLeft /> Go Back
-                </Link>
+                </button>
                 <Link to='/browse-roommate' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
                     View All <FaArrowRight />
                 </Link>
@@ -67,7 +69,7 @@ const AddRoommateForm = () => {
 
             <form
                 onSubmit={handleSubmit}
-                className="space-y-6 bg-base-100 shadow-md rounded p-6 border-2 border-secondary/30">
+                className="space-y-6 bg-base-200 shadow-md rounded-md p-6 border-2 border-secondary/30">
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Title</label>
@@ -76,7 +78,7 @@ const AddRoommateForm = () => {
                         name="title"
                         required
                         placeholder="Looking for a roommate in NYC"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                        className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                     />
                 </div>
 
@@ -89,7 +91,7 @@ const AddRoommateForm = () => {
                             name="location"
                             placeholder="123 Main St, NY, US."
                             required
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -99,7 +101,7 @@ const AddRoommateForm = () => {
                             name="amount"
                             required
                             placeholder="e.g. 1200"
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
@@ -111,7 +113,7 @@ const AddRoommateForm = () => {
                         <div className='relative'>
                             <select
                                 name='room-type'
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary">
                                 <option value="">Select Room Type</option>
                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
@@ -129,7 +131,7 @@ const AddRoommateForm = () => {
                             <select
                                 name='availability'
                                 required
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
                                 <option value="">Select Availability</option>
                                 <option value="available">Available</option>
                                 <option value="not-available">Not Available</option>
@@ -163,7 +165,7 @@ const AddRoommateForm = () => {
                         rows={10}
                         name="description"
                         required
-                        className="input input-bordered w-full h-30 rounded focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
+                        className="input input-bordered w-full h-30 rounded-md focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
                         placeholder="Write something about the room or preferences..."
                     ></textarea>
 
@@ -176,7 +178,7 @@ const AddRoommateForm = () => {
                         name="roomPhoto"
                         required
                         placeholder="https://example.com/room.jpg"
-                        className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                        className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                     />
                 </div>
 
@@ -188,7 +190,7 @@ const AddRoommateForm = () => {
                             type="text"
                             name="phone"
                             placeholder='+1 234 567 8900'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -197,7 +199,7 @@ const AddRoommateForm = () => {
                             type="text"
                             name="chatLink"
                             placeholder='wa.me/username'
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>
@@ -211,7 +213,7 @@ const AddRoommateForm = () => {
                             name="userName"
                             value={user?.displayName}
                             readOnly
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                     <div>
@@ -221,7 +223,7 @@ const AddRoommateForm = () => {
                             name="email"
                             value={user?.email}
                             readOnly
-                            className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                         />
                     </div>
                 </div>

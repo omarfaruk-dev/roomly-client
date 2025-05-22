@@ -62,8 +62,8 @@ const NavBar = () => {
         <div className="hidden md:flex items-center space-x-3 z-105">
           {!user ? (
             <>
-              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
-              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded text-sm">Sign Up</Link>
+              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded-md text-sm">Sign In</Link>
+              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded-md text-sm">Sign Up</Link>
             </>
           ) : (
             <div className="relative group cursor-pointer">
@@ -79,7 +79,7 @@ const NavBar = () => {
                 </div>
               )}
 
-              <div className="absolute right-0 border border-secondary/20 w-40 bg-base-100/95 backdrop-blur-2xl rounded shadow 
+              <div className="absolute right-0 border border-secondary/20 w-40 bg-base-100/95 backdrop-blur-2xl rounded-md shadow 
       origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-200 ease-out 
       transform z-50">
                 <p className="px-4 py-2 font-medium text-primary">{user.displayName}</p>
@@ -126,8 +126,8 @@ const NavBar = () => {
           {navLinks}
           {!user ? (
             <div className="flex flex-col space-y-2 mt-2 px-3">
-              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded text-sm">Sign In</Link>
-              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded text-sm">Sign Up</Link>
+              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded-md text-sm">Sign In</Link>
+              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded-md text-sm">Sign Up</Link>
             </div>
           ) : (
             <div className="border-t border-secondary/30 pt-5 px-3 space-y-3 mt-2">

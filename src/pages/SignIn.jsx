@@ -95,7 +95,7 @@ const SignIn = () => {
     }
 
     return (
-        <div className="mt-20 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
+        <div className="mt-16 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
             {/* Left Column Image */}
             <div className="flex-1 flex items-center justify-center p-4">
                 <DotLottieReact
@@ -123,7 +123,7 @@ const SignIn = () => {
                                 type="email"
                                 name="email"
                                 placeholder="you@example.com"
-                                className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                             />
                         </div>
 
@@ -137,7 +137,7 @@ const SignIn = () => {
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
                                     placeholder="Ype Your Password"
-                                    className="input input-bordered w-full rounded focus:outline-none focus:ring-1 focus:ring-secondary"
+                                    className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                                 />
                                 <button
                                     type="button"
@@ -152,7 +152,7 @@ const SignIn = () => {
                         {error && <p className='text-red-500'>✗ {error}</p>}
 
                         {/* Sign In Button */}
-                        <button className="btn btn-secondary text-white w-full rounded mt-4">
+                        <button className="btn btn-secondary text-white w-full rounded-md mt-4">
                             Sign In
                         </button>
                     </form>
