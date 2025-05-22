@@ -13,7 +13,7 @@ import Spinner from "../components/ui/Spinner";
 const SignIn = () => {
 
     // const { user, signInUser, googleSignIn, setUser } = use
-    const { user, signInUser,googleSignIn, setUser } = use(AuthContext);
+    const { user, signInUser, googleSignIn, setUser } = use(AuthContext);
 
 
     //use location for path
@@ -56,10 +56,14 @@ const SignIn = () => {
 
         //signin user
         signInUser(email, password)
-            .then(result => {
-                const currentUser = result.user;
-                console.log(currentUser);
-                setUser(currentUser)
+            .then(userCredential => {
+                const currentUser = userCredential.user;
+                const userInfo = {
+                    email: currentUser.email,
+                    displayName: currentUser.displayName,
+                    photoURL: currentUser.photoURL,
+                }
+                setUser(userInfo)
                 setError('');
                 Swal.fire({
                     position: "center",
@@ -79,7 +83,7 @@ const SignIn = () => {
 
     }
 
-     //google signin
+    //google signin
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
@@ -161,9 +165,9 @@ const SignIn = () => {
                     <div className="divider">OR</div>
 
                     {/* Sign in with Google */}
-                    <button 
-                    onClick={handleGoogleSignIn}
-                    className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded">
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded">
                         <FcGoogle />
                         Sign in with Google
                     </button>

@@ -11,7 +11,7 @@ import Spinner from "../components/ui/Spinner";
 const SignUp = () => {
 
     const { user, createUser, googleSignIn, setUser, updateUser } = use(AuthContext);
-
+    console.log(user);
     const navigate = useNavigate()
 
     const [showPassword, setShowPassword] = useState(false);
@@ -45,10 +45,7 @@ const SignUp = () => {
         const photo = form.photo.value;
         const password = form.password.value;
         const formData = { name, email, password, photo }
-        // const formData = new FormData(form);
-        // const { email, password, ...restFormData } = Object.fromEntries(formData.entries());
         console.log(formData);
-
         //validation
         const isValid = {
             length: password.length >= 6,
@@ -64,7 +61,6 @@ const SignUp = () => {
         }
 
         //create user in the firebase
-        // Step 1: Create user in Firebase Auth
         createUser(email, password)
             .then((userCredential) => {
                 const currentUser = userCredential.user;
@@ -102,10 +98,23 @@ const SignUp = () => {
     //google signin
     const handleGoogleSignIn = () => {
         googleSignIn()
-            .then(result => {
-                setUser(result.user);
+            .then(userCredential => {
+                const currentUser = userCredential.user;
+                const userInfo = {
+                    email: currentUser.email,
+                    displayName: currentUser.displayName,
+                    photoURL: currentUser.photoURL,
+                }
+
+                setUser(userInfo);
                 navigate(`${location.state ? location.state : '/'}`)
-                toast.success('successfully login with google')
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Sign Up Success!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -115,15 +124,15 @@ const SignUp = () => {
     }
 
     //if already sing in return to previous page
-     useEffect(() => {
-    if (user) {
-      navigate(location.state ? location.state : '/');
-    }
-  }, [user, navigate]);
+    useEffect(() => {
+        if (user) {
+            navigate(location.state ? location.state : '/');
+        }
+    }, [user, navigate]);
 
-  if (user) {
-    return <Spinner />;
-  }
+    if (user) {
+        return <Spinner />;
+    }
 
     return (
         <div className="mt-16 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
