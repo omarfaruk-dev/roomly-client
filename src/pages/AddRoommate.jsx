@@ -3,7 +3,7 @@ import { FaArrowLeft, FaArrowRight, FaChevronDown, FaList, FaPlus } from 'react-
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
-import { Fade } from 'react-awesome-reveal';
+import { Fade, Slide } from 'react-awesome-reveal';
 import SafetyTrust from '../components/SafetyTrust';
 
 const AddRoommateForm = () => {
@@ -12,12 +12,32 @@ const AddRoommateForm = () => {
     
     const navigate = useNavigate();
 
+    // Add state for custom error messages
+    const [errors, setErrors] = React.useState({});
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
-
         const formData = new FormData(form);
         const newPost = Object.fromEntries(formData.entries());
+
+
+        // Custom validation
+        const newErrors = {};
+        if (!newPost.title?.trim()) newErrors.title = 'Title is required.';
+        if (!newPost.location?.trim()) newErrors.location = 'Location is required.';
+        if (!newPost.amount?.trim()) newErrors.amount = 'Rent amount is required.';
+        if (!formData.get('room-type')) newErrors['room-type'] = 'Room type is required.';
+        if (!formData.get('availability')) newErrors.availability = 'Availability is required.';
+        if (!newPost.description?.trim()) newErrors.description = 'Description is required.';
+        if (!newPost.roomPhoto?.trim()) newErrors.roomPhoto = 'Room photo URL is required.';
+        if (!user?.displayName) newErrors.userName = 'User name is required.';
+        if (!user?.email) newErrors.email = 'User email is required.';
+        if (!newPost.phone?.trim()) newErrors.phone = 'Phone number is required.';
+        // Optionally validate phone/chatLink if you want them required
+
+        setErrors(newErrors);
+        if (Object.keys(newErrors).length > 0) return;
 
 
         // Get multiple checkbox values
@@ -45,17 +65,33 @@ const AddRoommateForm = () => {
                     });
                 }
             })
+            .catch((err) => {
+                console.error("Error Saving Roommate Data:", err);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Something went wrong!",
+                    icon: "error",
+                });
+            })
     }
+
+    // Reset error for a field on change
+    const handleFieldChange = (e) => {
+        const { name } = e.target;
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: undefined }));
+        }
+        // For select fields with custom error keys
+        if (name === 'room-type' && errors['room-type']) {
+            setErrors(prev => ({ ...prev, ['room-type']: undefined }));
+        }
+        if (name === 'availability' && errors['availability']) {
+            setErrors(prev => ({ ...prev, ['availability']: undefined }));
+        }
+    };
 
     return (
         <div className="mt-16 max-w-4xl mx-auto px-4 py-20">
-            <div className="flex justify-center mb-6">
-                <Fade>
-                <h2 className="text-center text-2xl text-primary md:text-3xl font-bold">
-                    Add to Find <span className="text-secondary">Room / Roommate</span> Listings
-                </h2>
-            </Fade>
-            </div>
             <div className='flex justify-between items-center py-5'>
                 <button onClick={()=>navigate(-1)} className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
                     <FaArrowLeft /> Go Back
@@ -64,20 +100,31 @@ const AddRoommateForm = () => {
                     View All <FaList/>
                 </Link>
             </div>
-
-            <form
+            <Fade delay={300} duration={1000}>
+                <form
                 onSubmit={handleSubmit}
-                className="space-y-6 bg-base-200 shadow-md rounded-md p-6 border-2 border-secondary/30">
+                className="space-y-6 bg-base-200 shadow-md rounded-md p-6 border-2 border-secondary/30"
+                noValidate
+            >
+                <Fade>
+                  <h2 className="text-center text-2xl text-primary md:text-3xl font-bold mb-2">
+                    Add to Find <span className="text-secondary">Room / Roommate</span>
+                  </h2>
+                  <p className="text-center text-accent mb-12 max-w-2xl mx-auto">
+                    Fill out the form below to list your room or find a compatible roommate. All fields are required for the best matching experience.
+                  </p>
+                </Fade>
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Title</label>
                     <input
                         type="text"
                         name="title"
-                        required
                         placeholder="Looking for a roommate in NYC"
                         className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                        onChange={handleFieldChange}
                     />
+                    {errors.title && <p className="text-error text-xs mt-1">{errors.title}</p>}
                 </div>
 
                 {/* Location & Rent */}
@@ -88,19 +135,21 @@ const AddRoommateForm = () => {
                             type="text"
                             name="location"
                             placeholder="123 Main St, NY, US."
-                            required
                             className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                            onChange={handleFieldChange}
                         />
+                        {errors.location && <p className="text-error text-xs mt-1">{errors.location}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-primary mb-1">Rent Amount ($/mo)</label>
                         <input
                             type="number"
                             name="amount"
-                            required
                             placeholder="e.g. 1200"
                             className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                            onChange={handleFieldChange}
                         />
+                        {errors.amount && <p className="text-error text-xs mt-1">{errors.amount}</p>}
                     </div>
                 </div>
 
@@ -111,7 +160,9 @@ const AddRoommateForm = () => {
                         <div className='relative'>
                             <select
                                 name='room-type'
-                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary">
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                                onChange={handleFieldChange}
+                            >
                                 <option value="">Select Room Type</option>
                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
@@ -121,6 +172,7 @@ const AddRoommateForm = () => {
                                 <FaChevronDown className="text-sm" />
                             </div>
                         </div>
+                        {errors['room-type'] && <p className="text-error text-xs mt-1">{errors['room-type']}</p>}
                     </div>
                     {/* Availability */}
                     <div>
@@ -128,8 +180,9 @@ const AddRoommateForm = () => {
                         <div className="relative">
                             <select
                                 name='availability'
-                                required
-                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10">
+                                className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary appearance-none pr-10"
+                                onChange={handleFieldChange}
+                            >
                                 <option value="">Select Availability</option>
                                 <option value="available">Available</option>
                                 <option value="not-available">Not Available</option>
@@ -138,6 +191,7 @@ const AddRoommateForm = () => {
                                 <FaChevronDown className="text-sm" />
                             </div>
                         </div>
+                        {errors.availability && <p className="text-error text-xs mt-1">{errors.availability}</p>}
                     </div>
                 </div>
                 {/* lifestyle preferences */}
@@ -148,7 +202,7 @@ const AddRoommateForm = () => {
                     <div className="flex flex-wrap gap-3">
                         {['Pets', 'Smoking', 'Night Owl', 'Early Riser'].map((item) => (
                             <label key={item} className="flex items-center gap-2 text-accent">
-                                <input name="preferences" type="checkbox" value={item} className="checkbox checkbox-sm checkbox-secondary" />
+                                <input name="preferences" type="checkbox" value={item} className="checkbox checkbox-sm checkbox-secondary" onChange={handleFieldChange} />
                                 <span>{item}</span>
                             </label>
                         ))}
@@ -162,22 +216,23 @@ const AddRoommateForm = () => {
                     <textarea
                         rows={10}
                         name="description"
-                        required
                         className="input input-bordered w-full h-30 rounded-md focus:outline-none focus:ring-1 focus:ring-secondary overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words"
                         placeholder="Write something about the room or preferences..."
+                        onChange={handleFieldChange}
                     ></textarea>
-
+                    {errors.description && <p className="text-error text-xs mt-1">{errors.description}</p>}
                 </div>
-                {/* Title */}
+                {/* Room Photo URL */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Room Photo URL</label>
                     <input
                         type="text"
                         name="roomPhoto"
-                        required
                         placeholder="https://example.com/room.jpg"
                         className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                        onChange={handleFieldChange}
                     />
+                    {errors.roomPhoto && <p className="text-error text-xs mt-1">{errors.roomPhoto}</p>}
                 </div>
 
                 {/* Contact Info */}
@@ -189,7 +244,9 @@ const AddRoommateForm = () => {
                             name="phone"
                             placeholder='+1 234 567 8900'
                             className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                            onChange={handleFieldChange}
                         />
+                        {errors.phone && <p className="text-error text-xs mt-1">{errors.phone}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-primary mb-1">Social Chat <span className='text-xs italic'>(whatsapp/messenger/team)</span></label>
@@ -198,6 +255,7 @@ const AddRoommateForm = () => {
                             name="chatLink"
                             placeholder='wa.me/username'
                             className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                            onChange={handleFieldChange}
                         />
                     </div>
                 </div>
@@ -249,6 +307,8 @@ const AddRoommateForm = () => {
                     </button>
                 </div>
             </form>
+            </Fade>
+            
             <SafetyTrust/>
         </div>
     );

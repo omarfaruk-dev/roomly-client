@@ -106,6 +106,7 @@ const SignIn = () => {
 
     return (
         <div className="mt-16 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
+            <title>Roomly | User SignIn</title>
             {/* Left Column Image */}
             <div className="flex-1 flex items-center justify-center p-4">
                 <DotLottieReact

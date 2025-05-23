@@ -61,6 +61,7 @@ const RoommateDetails = () => {
 
     return (
         <div className="max-w-5xl mx-auto px-4 py-8 mt-16">
+            <title>Roomly | Roommate Details</title>
             {/* Like Count at Top */}
             <div className="flex items-center justify-between my-8">
                 <Link to='/browse-listing' className='btn btn-secondary'><FaList /> View All</Link>
