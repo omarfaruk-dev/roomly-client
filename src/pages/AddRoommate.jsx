@@ -3,7 +3,8 @@ import { FaArrowLeft, FaArrowRight, FaChevronDown, FaList, FaPlus } from 'react-
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
-import { Fade, Slide } from 'react-awesome-reveal';
+import { Fade } from 'react-awesome-reveal';
+import SafetyTrust from '../components/SafetyTrust';
 
 const AddRoommateForm = () => {
 
@@ -45,7 +46,6 @@ const AddRoommateForm = () => {
                 }
             })
     }
-
 
     return (
         <div className="mt-16 max-w-4xl mx-auto px-4 py-20">
@@ -249,6 +249,7 @@ const AddRoommateForm = () => {
                     </button>
                 </div>
             </form>
+            <SafetyTrust/>
         </div>
     );
 };

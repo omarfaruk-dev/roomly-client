@@ -2,7 +2,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import { FaComments, FaHandsHelping, FaLock, FaShieldAlt, FaUserCheck } from "react-icons/fa";
 
 const SafetyTrust = () => (
-  <section className="max-w-7xl mx-auto px-4 pt-30">
+  <section className="max-w-7xl mx-auto px-4 pt-10 md:pt-20 lg:pt-30">
     <Slide direction="left" delay={300} duration={1000}>
       <h2 className="text-center text-3xl md:text-4xl font-bold text-primary mb-2">
         <span className="text-secondary">Safety</span> &amp; <span className="text-primary">Trust</span>
@@ -24,8 +24,8 @@ const SafetyTrust = () => (
         </div>
       </Slide>
       <Slide direction="right" delay={300} duration={1000}>
-        <div className="flex flex-col items-center text-center bg-base-200 rounded-md shadow-md p-6 border-l-4 border-primary/20 hover:scale-102 hover:border-primary transition-transform duration-300">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary shadow-sm mb-3">
+        <div className="flex flex-col items-center text-center bg-base-200 rounded-md shadow-md p-6 border-l-4 border-secondary/20 hover:scale-102 hover:border-secondary transition-transform duration-300">
+          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/15 text-2xl font-bold text-secondary shadow-sm mb-3">
             <FaUserCheck />
           </div>
           <h3 className="font-semibold text-primary mb-1">Profile Verification</h3>
@@ -38,16 +38,16 @@ const SafetyTrust = () => (
             <FaComments />
           </div>
           <h3 className="font-semibold text-primary mb-1">Secure Messaging</h3>
-          <p className="text-accent text-sm">Chat safely within Roomly before sharing personal details and build trust.</p>
+          <p className="text-accent text-sm">Chat safely before sharing personal info and build trust.</p>
         </div>
       </Slide>
       <Slide direction="right" delay={300} duration={1000}>
-        <div className="flex flex-col items-center text-center bg-base-200 rounded-md shadow-md p-6 border-l-4 border-primary/20 hover:scale-102 hover:border-primary transition-transform duration-300">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary shadow-sm mb-3">
+        <div className="flex flex-col items-center text-center bg-base-200 rounded-md shadow-md p-6 border-l-4 border-secondary/20 hover:scale-102 hover:border-secondary transition-transform duration-300">
+          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/15 text-2xl font-bold text-secondary shadow-sm mb-3">
             <FaLock />
           </div>
           <h3 className="font-semibold text-primary mb-1">Privacy Protection</h3>
-          <p className="text-accent text-sm">Your information is protected and never shared without your consent.</p>
+          <p className="text-accent text-sm">Your info is protected & never shared without your consent.</p>
         </div>
       </Slide>
     </div>

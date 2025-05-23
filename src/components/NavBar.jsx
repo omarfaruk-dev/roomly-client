@@ -54,17 +54,19 @@ const NavBar = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
+  const handleMobileMenuClose = () => setMobileMenuOpen(false);
+
   const navLinks = (
     <>
-      <NavLink to="/" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">Home</NavLink>
-      <NavLink to="/add-roommate" className=" md:px-2 lg:px-3 py-2 block text-primary font-medium hover:text-secondary">Add To Find Roommate</NavLink>
-      <NavLink to="/browse-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">Browse Listing</NavLink>
-      <NavLink to="/my-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary">My Listing</NavLink>
+      <NavLink to="/" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Home</NavLink>
+      <NavLink to="/add-roommate" className=" md:px-2 lg:px-3 py-2 block text-primary font-medium hover:text-secondary" onClick={handleMobileMenuClose}>Add To Find Roommate</NavLink>
+      <NavLink to="/browse-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Browse Listing</NavLink>
+      <NavLink to="/my-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>My Listing</NavLink>
     </>
   );
 
   return (
-    <nav className={`fixed w-full top-0 z-50 bg-base-200 backdrop-blur-2xl transition-colors duration-300 ${scrolled ? "shadow-md" : ""}`}>
+    <nav className={`fixed w-full top-0 z-50 bg-base-200 backdrop-blur-2xl border-b border-secondary/20 transition-colors duration-300 ${scrolled ? "shadow-md" : ""}`}>
 
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo (always left) */}
@@ -160,17 +162,17 @@ const NavBar = () => {
           {navLinks}
           {!user ? (
             <div className="flex flex-col space-y-2 mt-2 px-3">
-              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded-md text-sm">Sign In</Link>
-              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded-md text-sm">Sign Up</Link>
+              <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded-md text-sm" onClick={handleMobileMenuClose}>Sign In</Link>
+              <Link to="/signup" className="btn btn-secondary px-4 py-1 rounded-md text-sm" onClick={handleMobileMenuClose}>Sign Up</Link>
             </div>
           ) : (
             <div className="border-t border-secondary/30 pt-5 px-3 space-y-3 mt-2">
               <p className="font-medium">{user?.displayName}</p>
-              <button className="flex items-center gap-2 text-primary w-full">
+              <button className="flex items-center gap-2 text-primary w-full" onClick={handleMobileMenuClose}>
                 <FaUserCircle /> Profile
               </button>
               <Link
-                onClick={handleSignOut}
+                onClick={() => { handleSignOut(); handleMobileMenuClose(); }}
                 className="flex items-center gap-2 text-primary w-full"
               >
                 <FaSignOutAlt /> Logout

@@ -4,12 +4,12 @@ import { Link } from "react-router";
 const Footer = () => {
     return (
         <footer className="bg-secondary/5 text-accent pt-12 pb-6">
-            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 text-sm items-start justify-items-center">
+            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 text-sm items-start lg:justify-items-center">
                 {/* Brand & Mission */}
                 <div>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex lg:items-center gap-2 mb-3">
                         <img src="/logo-small.png" alt="Roomly Logo" className="w-8 h-8" />
-                        <span className="text-xl font-bold text-primary">Roomly</span>
+                        <span className="text-xl font-bold text-secondary">ROOMLY</span>
                     </div>
                     <p className="text-accent text-sm leading-relaxed mb-2">Roomly makes finding a safe, compatible roommate or room easy and secure. Built for trust, privacy, and real connections.</p>
                 </div>

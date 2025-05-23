@@ -1,5 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import { useLoaderData, Link } from "react-router";
+import HowItWorks from "../../components/HowItWorks";
 
 const BrowseListing = () => {
     const listings = useLoaderData();
@@ -55,6 +56,7 @@ const BrowseListing = () => {
                     </tbody>
                 </table>
             </div>
+            <HowItWorks/>
         </div>
     );
 };

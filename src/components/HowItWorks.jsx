@@ -2,7 +2,7 @@ import { Fade, JackInTheBox, Slide } from "react-awesome-reveal";
 
 
 const HowItWorks = () => (
-    <section className="max-w-7xl mx-auto px-4 pt-30">
+    <section className="max-w-7xl mx-auto px-4 pt-10 md:pt-20 lg:pt-30">
         <Slide direction="left" delay={300} duration={1000}>
             <h2 className="text-center text-3xl text-primary md:text-4xl font-bold mb-2">
                 How <span className="text-secondary">Roomly</span> Works
@@ -14,9 +14,9 @@ const HowItWorks = () => (
             </p>
         </Slide>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {/* Left: Steps 1 & 2 */}
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-8">
                 <Slide direction="left" delay={300} duration={1000}>
                     <div className="flex items-start gap-4 bg-base-200 rounded-xl shadow-md p-6 border-l-4 hover:border-secondary border-secondary/15 hover:scale-102 transition-all">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/15 text-2xl font-bold text-secondary shadow-sm">
@@ -40,15 +40,17 @@ const HowItWorks = () => (
 
             </div>
             {/* Center: Image */}
-            <Fade duration={3000} delay={300}>
-                <div className="hidden md:flex justify-center items-center">
-                    <img src="/logo.png" alt="How Roomly Works" className="w-64 h-64 p-2 object-contain rounded-xl shadow-md border-4 border-secondary/15 bg-white" />
-                </div>
-            </Fade>
+            <div className="hidden md:block">
+                <Fade duration={3000} delay={300}>
+                    <div className="hidden md:flex justify-center items-center">
+                        <img src="/logo.png" alt="How Roomly Works" className="w-64 h-64 p-2 object-contain rounded-xl shadow-md border-4 border-secondary/15 bg-white" />
+                    </div>
+                </Fade>
+            </div>
 
             {/* Right: Steps 3 & 4 */}
             <Slide direction="right" delay={300} duration={1000}>
-                <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-8">
                     <div className="flex items-start gap-4 bg-base-200 rounded-xl shadow-md p-6 border-l-4 hover:border-secondary border-secondary/15 hover:scale-102 transition-all">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/15 text-2xl font-bold text-secondary shadow-sm">
                             3

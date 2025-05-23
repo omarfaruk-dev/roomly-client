@@ -8,11 +8,14 @@ const Home = () => {
 
     return (
         <div>
-            <HeroSlider/>
-            <FeaturedRoommates/>
-            <SafetyTrust/>
-            <HowItWorks/>
-            <ClientFeedback/>
+            <div className='pt-10'>
+
+                <HeroSlider />
+            </div>
+            <FeaturedRoommates />
+            <SafetyTrust />
+            <HowItWorks />
+            <ClientFeedback />
         </div>
     );
 };

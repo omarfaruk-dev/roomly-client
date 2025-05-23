@@ -3,10 +3,11 @@ import { FaHeart, FaList, FaPhone, FaRegHeart } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const RoommateDetails = () => {
     const roommateData = useLoaderData()
-    const {user} = use(AuthContext);
+    const { user } = use(AuthContext);
     const {
         roomPhoto,
         title,
@@ -31,7 +32,11 @@ const RoommateDetails = () => {
 
     const handleLike = async () => {
         if (isOwnPost) {
-            alert("You can't like your own post");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'You can not like your own post',
+            });
             return;
         }
         try {
@@ -58,7 +63,7 @@ const RoommateDetails = () => {
         <div className="max-w-5xl mx-auto px-4 py-8 mt-16">
             {/* Like Count at Top */}
             <div className="flex items-center justify-between my-8">
-                <Link to='/browse-listing' className='btn btn-secondary'><FaList/> View All</Link>
+                <Link to='/browse-listing' className='btn btn-secondary'><FaList /> View All</Link>
                 <span className='bg-secondary/15 text-secondary text-lg rounded-3xl py-1 px-3'><span className='font-bold'>{likeCount}</span> people interested in</span>
             </div>
 
