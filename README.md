@@ -2,6 +2,10 @@
 
 Live website: [https://roomly-app.netlify.app](https://roomly-app.netlify.app)
 
+![Roomly Responsive UI Screenshot](https://i.ibb.co/JRSrt7Ky/responsive.jpg)
+
+
+
 Roomly is a modern web application for finding and listing roommates and rooms, designed for trust, privacy, and real connections. Built with React, React Router, Tailwind CSS, DaisyUI, Firebase, Express, and MongoDB, Roomly offers a seamless, professional, and accessible experience for users seeking safe and compatible living arrangements.
 
 ## Repositories
@@ -10,7 +14,7 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
 
 ## Key Features
 - Browse and search roommate/room listings
-- Add, edit, and manage your own listings
+- Add, edit, delete, and manage your own listings
 - Like listings to reveal contact details
 - Responsive, modern UI with light/dark theme toggle
 - Professional homepage with animated hero slider
@@ -24,19 +28,19 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
 - Tailwind CSS & DaisyUI
 - Firebase Authentication
 - React Router
-- Swiper.js (Hero Slider)
+- Swiper.js (Slider)
 - SweetAlert2, React Hot Toast (feedback)
 - Express
 - MongoDB
 - Lottie React
 - React-simple-typewriter
 - React Awesome Reveal
-- CORS (middleware)
 
 ## Getting Started
+
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev
    cd roomly-client
    ```
 2. **Install dependencies:**
@@ -47,6 +51,42 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
    ```bash
    npm run dev
    ```
+4. **Install React Router:**
+
+```bash
+npm install react-router
+```
+
+5. **Install Tailwind CSS:**
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+6. **Install Firebase:**
+
+```bash
+npm i firebase
+```
+7. **Install SwiperJS:**
+
+```bash
+npm i swiper
+```
+
+8. **Install Toast & Others packages :**
+
+```bash
+npm install react-hot-toast
+npm install sweetalert2
+npm install react-icons
+npm i lottie-react
+npm i react-simple-typewriter
+npm i react-awesome-reveal
+
+```
+
+---
 4. **Open in your browser:**
    Visit [http://localhost:5173](http://localhost:5173)
 
@@ -67,4 +107,11 @@ This project is for educational/demo purposes. All rights reserved.
 
 ---
 
-© {new Date().getFullYear()} Roomly. All rights reserved.
+## Contact
+
+If you want to collaborate or have suggestions:
+
+###  [Github](https://github.com/omarfaruk-dev)
+###  [Linkedin](https://www.linkedin.com/in/pro-omarfaruk)
+
+---

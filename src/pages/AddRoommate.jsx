@@ -63,6 +63,7 @@ const AddRoommateForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    form.reset();
                 }
             })
             .catch((err) => {
@@ -91,7 +92,7 @@ const AddRoommateForm = () => {
     };
 
     return (
-        <div className="mt-16 max-w-4xl mx-auto px-4 py-20">
+        <div className="mt-16 max-w-4xl mx-auto px-4 py-10 md:py-20">
             <div className='flex justify-between items-center py-5'>
                 <button onClick={()=>navigate(-1)} className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
                     <FaArrowLeft /> Go Back
@@ -100,20 +101,18 @@ const AddRoommateForm = () => {
                     View All <FaList/>
                 </Link>
             </div>
-            <Fade delay={300} duration={1000}>
+            <Fade>
                 <form
                 onSubmit={handleSubmit}
                 className="space-y-6 bg-base-200 shadow-md rounded-md p-6 border-2 border-secondary/30"
                 noValidate
             >
-                <Fade>
                   <h2 className="text-center text-2xl text-primary md:text-3xl font-bold mb-2">
                     Add to Find <span className="text-secondary">Room / Roommate</span>
                   </h2>
                   <p className="text-center text-accent mb-12 max-w-2xl mx-auto">
                     Fill out the form below to list your room or find a compatible roommate. All fields are required for the best matching experience.
                   </p>
-                </Fade>
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-primary mb-1">Title</label>

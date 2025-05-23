@@ -51,7 +51,7 @@ const MyListing = () => {
     };
 
     return (
-        <div className="max-w-7xl min-h-[calc(100vh-300px)] mx-auto mt-16 px-4 py-20">
+        <div className="max-w-7xl min-h-[calc(100vh-300px)] mx-auto mt-16 px-4 py-10 md:py-20">
             <title>My Roommate Listing | Roomly</title>
             <Fade>
                 <h2 className="text-center text-2xl text-primary md:text-3xl font-bold mb-10">
@@ -79,7 +79,7 @@ const MyListing = () => {
             ) :
                 (
                     <div className="overflow-x-auto shadow-md rounded">
-                        <table className="min-w-full bg-base-200 text-left border border-secondary/10">
+                        <table className="min-w-full bg-base-200 overflow-x-scroll text-left border border-secondary/10">
                             <thead className="bg-secondary/10 text-secondary text-sm">
                                 <tr>
                                     <th className="px-4 py-3 border-b border-secondary/10">Photo</th>

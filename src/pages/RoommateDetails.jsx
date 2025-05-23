@@ -1,5 +1,5 @@
 import { use, useState } from 'react';
-import { FaHeart, FaList, FaPhone, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaList, FaPhone, FaRegHeart, FaUser } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
@@ -127,11 +127,9 @@ const RoommateDetails = () => {
             <div className="flex items-center justify-between border-dashed border-t border-secondary/20 pt-4">
                 {/* User Info */}
                 <div className="flex items-center gap-4">
-                    <img
-                        src="https://i.pravatar.cc/100"
-                        alt="User"
-                        className="w-12 h-12 rounded-full border-2 border-secondary shadow-sm hover:scale-105 transition-transform duration-200 bg-white"
-                    />
+                    <span className="w-12 h-12 flex items-center justify-center rounded-full border-2 border-secondary shadow-sm bg-white text-secondary text-2xl">
+                        <FaUser />
+                    </span>
                     <div className="flex flex-col">
                         <span className="font-semibold text-primary text-base flex items-center gap-1">
                             {userName}
