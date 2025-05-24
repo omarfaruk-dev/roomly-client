@@ -34,9 +34,9 @@ const Footer = () => {
                 <div className="flex flex-col items-center">
                     <h3 className="text-lg font-semibold mb-2 text-primary">Connect</h3>
                     <div className="flex gap-4 text-lg mb-1">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary"><FaFacebookF /></a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary"><FaTwitter /></a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-secondary"><FaInstagram /></a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-secondary/80"><FaFacebookF /></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-secondary/80"><FaTwitter /></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-secondary/80"><FaInstagram /></a>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ const SafetyTrust = () => (
             <FaShieldAlt />
           </div>
           <h3 className="font-semibold text-primary mb-1">Verified Listings</h3>
-          <p className="text-accent text-sm">Every room and roommate is reviewed for authenticity and quality.</p>
+          <p className="text-accent text-sm">Every listing and roommate is reviewed to ensure quality, trust, and authenticity.</p>
         </div>
       </Slide>
       <Slide direction="right" delay={300} duration={1000}>
@@ -29,7 +29,7 @@ const SafetyTrust = () => (
             <FaUserCheck />
           </div>
           <h3 className="font-semibold text-primary mb-1">Profile Verification</h3>
-          <p className="text-accent text-sm">User profiles are checked to help you connect with real people only.</p>
+          <p className="text-accent text-sm">We verify profiles so you connect only with real and reliable people on Roomly.</p>
         </div>
       </Slide>
       <Slide direction="left" delay={300} duration={1000}>
@@ -38,7 +38,7 @@ const SafetyTrust = () => (
             <FaComments />
           </div>
           <h3 className="font-semibold text-primary mb-1">Secure Messaging</h3>
-          <p className="text-accent text-sm">Chat safely before sharing personal info and build trust.</p>
+          <p className="text-accent text-sm">Chat safely within Roomly before sharing info to build trust and real connections.</p>
         </div>
       </Slide>
       <Slide direction="right" delay={300} duration={1000}>
@@ -47,7 +47,7 @@ const SafetyTrust = () => (
             <FaLock />
           </div>
           <h3 className="font-semibold text-primary mb-1">Privacy Protection</h3>
-          <p className="text-accent text-sm">Your info is protected & never shared without your consent.</p>
+          <p className="text-accent text-sm">Your data stays secure and is never shared without your clear permission first.</p>
         </div>
       </Slide>
     </div>

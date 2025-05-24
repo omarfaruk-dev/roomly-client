@@ -9,7 +9,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30); // Adjust threshold as needed
+      setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,25 +39,37 @@ const NavBar = () => {
 
   // Signout user
   const handleSignOut = () => {
-    signOutUser()
-      .then(() => {
-        navigate('/')
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Log Out Successfully!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: errorMessage || 'Something went wrong!',
-        });
-      })
+    Swal.fire({
+      title: "Are you sure you want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Log Out",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+      focusCancel: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        signOutUser()
+          .then(() => {
+            navigate('/')
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Log Out Successful!",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+          .catch(error => {
+            const errorMessage = error.message;
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: errorMessage || 'Something went wrong!',
+            });
+          });
+      }
+    });
   }
 
   const toggleTheme = () => {
@@ -131,7 +143,7 @@ const NavBar = () => {
       origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-200 ease-out 
       transform z-50">
                 <p className="px-4 py-2 font-medium text-primary">{user.displayName}</p>
-                <hr className="border-t border-secondary/30"/>
+                <hr className="border-t border-secondary/30" />
                 <NavLink to='/my-profile' className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
                   <FaUserCircle /> Profile
                 </NavLink>
@@ -173,7 +185,7 @@ const NavBar = () => {
       {/* Mobile Nav */}
       <div
         className={`md:hidden absolute right-0 top-16 w-full z-50 transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'opacity-100 scale-y-100 max-h-[500px] pointer-events-auto' : 'opacity-0 scale-y-95 max-h-0 pointer-events-none'} origin-top`}
-        
+
       >
         <div className="border border-secondary/20 w-11/12 mx-auto bg-base-200 rounded-md shadow mt-2 p-4">
           {navLinks}

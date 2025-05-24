@@ -12,6 +12,7 @@ import BrowseListings from "../pages/browsListing/BrowsListing";
 import MyListing from "../pages/myListing/MyListing";
 import UpdateRoommateInfo from "../pages/UpdateRoommateInfo";
 import MyProfile from "../pages/MyProfile";
+import Privacy from "../pages/Privacy";
 
 
 const router = createBrowserRouter([
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
                 loader: () => fetch('https://roomly-server.vercel.app/roommates'),
                 element: <PrivateRoutes><MyListing /></PrivateRoutes>
             },
+            {
+                path: '/privacy-policy',
+                Component: Privacy,
+            }
 
         ]
 

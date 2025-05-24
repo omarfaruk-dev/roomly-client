@@ -21,12 +21,13 @@ const MyProfile = () => {
                             src={user.photoURL}
                             alt={user.displayName || user.email}
                             className="w-30 h-30 p-2 rounded-full border-4 border-secondary object-cover shadow"
+                            onError={e => { e.target.onerror = null; e.target.style.display = 'none'; e.target.parentNode.querySelector('.fallback-avatar').style.display = 'flex'; }}
                         />
-                    ) : (
-                        <div className="w-28 h-28 flex items-center justify-center rounded-full border-4 border-secondary text-secondary shadow">
-                            <FaUser className="w-16 h-16" />
-                        </div>
-                    )}
+                    ) : null}
+                    {/* Fallback Avatar */}
+                    <div className="w-28 h-28 flex items-center justify-center rounded-full border-4 border-secondary text-secondary shadow fallback-avatar" style={{display: user?.photoURL ? 'none' : 'flex'}}>
+                        <FaUser className="w-16 h-16" />
+                    </div>
                     <h2 className="text-2xl font-bold text-primary">{user?.displayName || 'Anonymous User'}</h2>
                     <p className="text-secondary text-sm">{user?.email}</p>
                 </div>

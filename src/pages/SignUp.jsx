@@ -232,13 +232,13 @@ const SignUp = () => {
                                     placeholder="Enter your password"
                                     autoComplete="off"
                                 />
-                                <button
+                                <p
                                     type="button"
                                     onClick={togglePasswordVisibility}
-                                    className="absolute z-10 inset-y-0 right-3 flex items-center text-secondary focus:outline-none"
+                                    className="absolute inset-y-0 z-10 right-3 flex items-center text-secondary"
                                 >
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                </button>
+                                </p>
                             </div>
                             {errors.password && <p className="text-red-600 text-xs mt-1">{errors.password}</p>}
                         </div>
