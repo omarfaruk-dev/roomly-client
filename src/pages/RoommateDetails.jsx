@@ -1,9 +1,11 @@
 import { use, useState } from 'react';
-import { FaHeart, FaList, FaPhone, FaRegHeart, FaUser } from 'react-icons/fa';
+import { FaHeart, FaList, FaPhone, FaRegHeart, FaUser, FaEnvelope } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import { RiThumbUpFill, RiThumbUpLine } from 'react-icons/ri';
+
 
 const RoommateDetails = () => {
     const roommateData = useLoaderData()
@@ -22,10 +24,18 @@ const RoommateDetails = () => {
         email,
         chatLink,
         likes,
-    } = roommateData;
+    } = roommateData || {};
+
+
 
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(parseInt(likes));
+    const [copied, setCopied] = useState(false);
+
+    if (!roommateData) {
+        return <p>This is error page</p>
+        // <RoommateNotFound _id={_id} />
+    }
 
     // Prevent user from liking their own post
     const isOwnPost = user && user.email === email;
@@ -59,13 +69,14 @@ const RoommateDetails = () => {
         }
     };
 
+
     return (
-        <div className="max-w-5xl mx-auto px-4 py-8 mt-16">
+        <div className="max-w-5xl mx-auto px-4 py-10 md:py-20 mt-16">
             <title>Roomly | Roommate Details</title>
             {/* Like Count at Top */}
             <div className="flex items-center justify-between my-8">
                 <Link to='/browse-listing' className='btn btn-secondary'><FaList /> View All</Link>
-                <span className='bg-secondary/15 text-secondary text-lg rounded-3xl py-1 px-3'><span className='font-bold'>{likeCount}</span> people interested in</span>
+                <span className='bg-secondary/15 text-secondary md:text-lg rounded-3xl py-1 px-3'><span className='font-bold'>{likeCount}</span> people interested in</span>
             </div>
 
             {/* Room Photo */}
@@ -84,19 +95,19 @@ const RoommateDetails = () => {
                 {/* Info Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full text-accent bg-secondary/5 rounded-md p-4 border border-secondary/10 shadow">
                     <div className="flex flex-col items-center">
-                        <span className="font-semibold text-xs text-secondary/80 uppercase mb-1">Location</span>
+                        <span className="font-semibold text-sm text-secondary uppercase mb-1">Location</span>
                         <span className="text-primary font-medium">{location}</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <span className="font-semibold text-xs text-secondary/80 uppercase mb-1">Rent</span>
+                        <span className="font-semibold text-sm text-secondary uppercase mb-1">Rent</span>
                         <span className="text-primary font-medium">${amount}/mo</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <span className="font-semibold text-xs text-secondary/80 uppercase mb-1">Room Type</span>
+                        <span className="font-semibold text-sm text-secondary uppercase mb-1">Room Type</span>
                         <span className="text-primary font-medium">{roomType}</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <span className="font-semibold text-xs text-secondary/80 uppercase mb-1">Availability</span>
+                        <span className="font-semibold text-sm text-secondary uppercase mb-1">Availability</span>
                         <span className={`font-medium px-2 py-0.5 rounded-full ${availability === 'available' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>{availability}</span>
                     </div>
                 </div>
@@ -104,12 +115,12 @@ const RoommateDetails = () => {
 
             {/* Preferences */}
             <div className="mb-6">
-                <p className="font-medium text-accent mb-1">Lifestyle Preferences:</p>
+                <p className="font-bold text-accent mb-1">Lifestyle Preferences:</p>
                 <div className="flex flex-wrap gap-2">
                     {Array.isArray(preferences) && preferences.map((pref, index) => (
                         <span
                             key={index}
-                            className="bg-secondary/15 text-secondary text-sm font-medium px-3 py-1 rounded-full"
+                            className="bg-secondary/10 text-secondary text-xs px-2 py-1 rounded"
                         >
                             {pref}
                         </span>
@@ -119,7 +130,7 @@ const RoommateDetails = () => {
 
             {/* Description */}
             <div className="my-6">
-                <p className="font-medium text-accent mb-1">Description:</p>
+                <p className="font-bold text-accent mb-1">Description:</p>
                 <p className="text-primary">{description}</p>
             </div>
 
@@ -144,7 +155,7 @@ const RoommateDetails = () => {
                     className={`flex items-center gap-1 text-lg px-3 py-1 rounded-full shadow border border-secondary/30 bg-gradient-to-r from-secondary/20 via-base-200 to-secondary/10 font-semibold transition-all duration-200 hover:scale-102 hover:shadow-md focus:outline-none focus:ring-1 focus:ring-secondary ${liked ? 'text-secondary bg-secondary/10 border-secondary' : 'text-accent'}`}
                     title={isOwnPost ? "You can't like your own post" : liked ? "Already liked" : "Like to view contact info"}
                 >
-                    {liked ? <FaHeart className="animate-pulse text-red-500" /> : <FaRegHeart />}
+                    {liked ? <RiThumbUpFill className="animate-pulse text-red-500" /> : <RiThumbUpLine />}
                     <span className="ml-1 text-sm font-medium hidden sm:inline">{liked ? 'Liked' : 'View Contact Info'}</span>
                 </button>
             </div>
@@ -160,26 +171,37 @@ const RoommateDetails = () => {
                             </div>
                             <div className="flex items-center gap-3 text-base">
                                 <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-secondary/10 text-secondary mr-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-.659 1.591l-7.5 7.5a2.25 2.25 0 01-3.182 0l-7.5-7.5A2.25 2.25 0 012.25 6.993V6.75" />
-                                    </svg>
+                                    <FaEnvelope className="w-5 h-5" />
                                 </span>
-                                <span className="text-accent break-all">{email}</span>
+                                <p
+                                    type="button"
+                                    className="text-accent break-all underline hover:text-secondary focus:outline-none active:outline-none"
+                                    aria-label={copied ? "Copied!" : "Copy email to clipboard"}
+                                    title={copied ? undefined : "Copy email to clipboard"}
+                                    onClick={() => {
+                                        if (email) {
+                                            navigator.clipboard.writeText(email);
+                                            setCopied(true);
+                                            setTimeout(() => setCopied(false), 1200);
+                                        }
+                                    }}
+                                >
+                                    {email}
+                                    {copied && <span className="ml-5 text-green-600 text-xs">Copied!</span>}
+                                </p>
                             </div>
                         </div>
-                        <a
-                            href={chatLink}
+                        <Link
+                            to={chatLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn btn-secondary btn-wide font-semibold rounded-full shadow-md hover:scale-105 hover:bg-secondary/90 transition-all duration-200 mt-2"
+                            className="btn btn-secondary font-semibold rounded shadow-md hover:scale-105 hover:bg-secondary/90 transition-all duration-200 mt-2"
                         >
                             Chat Now
-                        </a>
+                        </Link>
                     </div>
                 </div>
             )}
-
-
         </div>
     );
 };
