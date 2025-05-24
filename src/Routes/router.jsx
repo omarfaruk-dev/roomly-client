@@ -11,6 +11,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import BrowseListings from "../pages/browsListing/BrowsListing";
 import MyListing from "../pages/myListing/MyListing";
 import UpdateRoommateInfo from "../pages/UpdateRoommateInfo";
+import MyProfile from "../pages/MyProfile";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 Component: SignUp,
+            },
+            {
+                path: '/my-profile',
+                element: <PrivateRoutes><MyProfile/></PrivateRoutes>
             },
             {
                 path: '/add-roommate',
