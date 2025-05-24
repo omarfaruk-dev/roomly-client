@@ -13,6 +13,7 @@ import MyListing from "../pages/myListing/MyListing";
 import UpdateRoommateInfo from "../pages/UpdateRoommateInfo";
 import MyProfile from "../pages/MyProfile";
 import Privacy from "../pages/Privacy";
+import TermsCondition from "../pages/TermsCondition";
 
 
 const router = createBrowserRouter([
@@ -70,7 +71,11 @@ const router = createBrowserRouter([
             {
                 path: '/privacy-policy',
                 Component: Privacy,
-            }
+            },
+            {
+                path: '/terms-and-conditions',
+                Component: TermsCondition,
+            },
 
         ]
 

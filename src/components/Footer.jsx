@@ -43,9 +43,9 @@ const Footer = () => {
             {/* Bottom: Terms/Privacy row, then copyright row */}
             <div className="pt-8 mt-8 text-center text-xs text-accent border-t border-secondary/10 flex flex-col items-center gap-2">
                 <div className="flex flex-wrap justify-center gap-4">
-                    <Link to="/terms" className="hover:text-secondary underline">Terms & Conditions</Link>
+                    <Link to="/terms-and-conditions" className="hover:text-secondary underline">Terms & Conditions</Link>
                     <span className="text-secondary/30">|</span>
-                    <Link to="/privacy" className="hover:text-secondary underline">Privacy Policy</Link>
+                    <Link to="/privacy-policy" className="hover:text-secondary underline">Privacy Policy</Link>
                 </div>
                 <div>
                     © {new Date().getFullYear()} Roomly. All rights reserved.

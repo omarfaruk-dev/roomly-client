@@ -7,6 +7,7 @@ const BrowseListing = () => {
 
     return (
         <div className="max-w-7xl mx-auto mt-16 px-4 py-20">
+            <title>Brows Roommate Listing | Roomly</title>
             <Fade>
                 <h2 className="text-center text-2xl text-primary md:text-3xl font-bold mb-10">
                     Browse <span className="text-secondary">Room/Roommate</span> Listings

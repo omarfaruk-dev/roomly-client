@@ -3,6 +3,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 const Privacy = () => {
     return (
         <div className="mt-16 max-w-4xl mx-auto px-4 py-10 md:py-20">
+            <title>Privacy Policy | Roomly</title>
             <div className="flex justify-center mb-6">
                 <DotLottieReact
                     src="https://lottie.host/6267bac1-7e29-4ca9-af6e-493c2cac70f6/y3BcqAa7DL.lottie"
