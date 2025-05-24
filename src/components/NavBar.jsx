@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { use, useEffect, useState } from "react";
 import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaMoon, FaSun } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -42,11 +42,21 @@ const NavBar = () => {
     signOutUser()
       .then(() => {
         navigate('/')
-        toast.success('Log Out Successfully!')
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Log Out Successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(error => {
         const errorMessage = error.message;
-        toast.error(errorMessage || 'Something went wrong!')
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: errorMessage || 'Something went wrong!',
+        });
       })
   }
 
@@ -64,6 +74,9 @@ const NavBar = () => {
       <NavLink to="/my-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>My Listing</NavLink>
     </>
   );
+
+  const [showUserPhoto, setShowUserPhoto] = useState(true);
+  const [showUserPhotoMobile, setShowUserPhotoMobile] = useState(true);
 
   return (
     <nav className={`fixed w-full top-0 z-50 bg-base-200 backdrop-blur-2xl border-b border-secondary/20 transition-colors duration-300 ${scrolled ? "shadow-md" : ""}`}>
@@ -91,6 +104,7 @@ const NavBar = () => {
           >
             {theme === 'light' ? <FaMoon className="text-lg" /> : <FaSun className="text-lg" />}
           </button>
+          {/* signup, signin, user photo nav right - tablet - desktop */}
           {!user ? (
             <>
               <Link to="/signin" className="btn btn-secondary btn-outline px-4 py-1 rounded-md text-sm">Sign In</Link>
@@ -98,26 +112,29 @@ const NavBar = () => {
             </>
           ) : (
             <div className="relative group cursor-pointer">
-              {user?.photoURL ? (
-                <img
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                  className="w-12 h-12 rounded-full border-2 border-secondary"
-                />
-              ) : (
-                <div className="w-12 h-12 flex items-center justify-center rounded-full border-2 text-secondary">
-                  <FaUser className="text-xl" />
-                </div>
-              )}
+              {user ? (
+                user.photoURL && showUserPhoto ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName}
+                    className="w-12 h-12 p-1 rounded-full border-2 border-secondary"
+                    onError={() => setShowUserPhoto(false)}
+                  />
+                ) : (
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full border-2 text-secondary">
+                    <FaUser className="text-xl" />
+                  </div>
+                )
+              ) : null}
 
               <div className="absolute right-2 border top-12 border-secondary/20 w-45 bg-base-200 backdrop-blur-2xl rounded-md shadow 
       origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-200 ease-out 
       transform z-50">
                 <p className="px-4 py-2 font-medium text-primary">{user.displayName}</p>
                 <hr className="border-t border-secondary/30"/>
-                <button className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
+                <NavLink to='/my-profile' className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
                   <FaUserCircle /> Profile
-                </button>
+                </NavLink>
                 <Link
                   onClick={handleSignOut}
                   className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
@@ -167,10 +184,15 @@ const NavBar = () => {
             </div>
           ) : (
             <div className="border-t border-secondary/30 pt-5 px-3 space-y-3 mt-2">
-              <p className="font-medium">{user?.displayName}</p>
-              <button className="flex items-center gap-2 text-primary w-full" onClick={handleMobileMenuClose}>
-                <FaUserCircle /> Profile
-              </button>
+              {/* <p className="font-medium">{user?.displayName}</p> */}
+              <NavLink to='/my-profile' className="flex items-center gap-2 text-primary w-full" onClick={handleMobileMenuClose}>
+                {user?.photoURL && showUserPhotoMobile ? (
+                  <img src={user.photoURL} alt={user.displayName || "User"} className="w-10 h-10 border p-1 border-secondary rounded-full" onError={() => setShowUserPhotoMobile(false)} />
+                ) : (
+                  <FaUser className="w-8 h-8 border border-secondary rounded-full p-1" />
+                )}
+                {user?.displayName}
+              </NavLink>
               <Link
                 onClick={() => { handleSignOut(); handleMobileMenuClose(); }}
                 className="flex items-center gap-2 text-primary w-full"

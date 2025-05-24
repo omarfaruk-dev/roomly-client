@@ -48,7 +48,7 @@ const SignUp = () => {
         if (!form.email.trim()) newErrors.email = "Email is required.";
         else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) newErrors.email = "Please enter a valid email address.";
         if (!form.photo.trim()) newErrors.photo = "Photo URL is required.";
-        else if (!/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|svg)$/i.test(form.photo)) newErrors.photo = "Please enter a valid image URL.";
+        // else if (!/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|svg)$/i.test(form.photo)) newErrors.photo = "Please enter a valid image URL.";
         if (!form.password) newErrors.password = "Password is required.";
         else {
             if (!validation.length) newErrors.password = "Password must be at least 6 characters.";
