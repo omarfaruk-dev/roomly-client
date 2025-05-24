@@ -1,16 +1,16 @@
 # ROOMLY
 
-Live website: [https://roomly-app.netlify.app](https://roomly-app.netlify.app)
-
 ![Roomly Responsive UI Screenshot](https://i.ibb.co/JRSrt7Ky/responsive.jpg)
 
+Live website: [https://roomly-app.netlify.app](https://roomly-app.netlify.app)
 
+# About ROOMLY
 
-Roomly is a modern web application for finding and listing roommates and rooms, designed for trust, privacy, and real connections. Built with React, React Router, Tailwind CSS, DaisyUI, Firebase, Express, and MongoDB, Roomly offers a seamless, professional, and accessible experience for users seeking safe and compatible living arrangements.
+Roomly is a modern web application for finding and listing roommates and rooms, designed for trust, privacy, and real connections. Built with **React, React Router, Tailwind CSS, DaisyUI, Firebase, Express, and MongoDB**. Roomly offers a seamless, professional, and accessible experience for users seeking safe and compatible living arrangements.
 
-## Repositories
-- Server-side: [https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-omarfaruk-dev](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-omarfaruk-dev)
-- Client-side: [https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev)
+## Related Repositories
+- **Client-side:** [Roomly Client Side Repo](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev)
+- **Server-side:** [Roomly Server Side Repo](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-omarfaruk-dev)
 
 ## Key Features
 - Browse and search roommate/room listings
@@ -21,7 +21,7 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
 - Accessible, mobile-friendly navigation and layout
 - Secure authentication (Sign Up, Sign In, Google Auth)
 - User profile dropdown and session management
-- Animated feedback, error handling, and smooth transitions
+- Animated title & subtitle, error handling, and smooth transitions
 
 ## Tech Stack
 - React (Vite)
@@ -30,14 +30,14 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
 - React Router
 - Swiper.js (Slider)
 - SweetAlert2, React Hot Toast (feedback)
-- Express
-- MongoDB
+- Express (API integration)
+- MongoDB (API integration)
 - Lottie React
 - React-simple-typewriter
 - React Awesome Reveal
+- CORS (middleware, API)
 
 ## Getting Started
-
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev
@@ -51,44 +51,23 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
    ```bash
    npm run dev
    ```
-4. **Install React Router:**
+4. **Open in your browser:**
+   Visit [http://localhost:5173](http://localhost:5173)
+
+### Install Required Packages
 
 ```bash
 npm install react-router
-```
-
-5. **Install Tailwind CSS:**
-
-```bash
 npm install tailwindcss @tailwindcss/vite
-```
-
-6. **Install Firebase:**
-
-```bash
-npm i firebase
-```
-7. **Install SwiperJS:**
-
-```bash
-npm i swiper
-```
-
-8. **Install Toast & Others packages :**
-
-```bash
+npm install firebase
+npm install swiper
 npm install react-hot-toast
 npm install sweetalert2
 npm install react-icons
-npm i lottie-react
-npm i react-simple-typewriter
-npm i react-awesome-reveal
-
+npm install lottie-react
+npm install react-simple-typewriter
+npm install react-awesome-reveal
 ```
-
----
-4. **Open in your browser:**
-   Visit [http://localhost:5173](http://localhost:5173)
 
 ## Project Structure
 - `src/components/` – UI components (NavBar, Footer, HeroSlider, etc.)
@@ -109,9 +88,7 @@ This project is for educational/demo purposes. All rights reserved.
 
 ## Contact
 
-If you want to collaborate or have suggestions:
+For collaboration or suggestions:
 
-###  [Github](https://github.com/omarfaruk-dev)
-###  [Linkedin](https://www.linkedin.com/in/pro-omarfaruk)
-
----
+- [GitHub](https://github.com/omarfaruk-dev)
+- [LinkedIn](https://www.linkedin.com/in/pro-omarfaruk)

@@ -24,23 +24,13 @@
   name: "dark";
   prefersdark: true;
   color-scheme: dark;
-  /* Option - 1 */
+
   --color-primary: #5F6CE0;         
   --color-secondary: #EB4899;
   --color-base-100: #060826;      
   --color-base-200: #02031f;        
   --color-base-300: #2A2A3C;       
   --color-accent: #E7E7E7;  
-
-  /* option 2 */
-   /* --color-primary: #5F6CE0;        
-  --color-secondary: #EB4899;      
-  --color-base-100: #FFFFFF;        
-  --color-base-200: #0D124B;        
-  --color-base-300: #2A2B30;        
-  --color-accent: #9FB9D0;          
-  --color-neutral: #E0E0E0;        
-  --color-base-content: #F0F0F0;     */
 
 }
 
