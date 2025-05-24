@@ -1,6 +1,6 @@
 # ROOMLY
 
-![Roomly Responsive UI Screenshot](https://i.ibb.co/JRSrt7Ky/responsive.jpg)
+![Roomly Responsive UI Screenshot](public/responsive.jpg)
 
 Live website: [https://roomly-app.netlify.app](https://roomly-app.netlify.app)
 
