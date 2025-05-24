@@ -6,7 +6,6 @@ import { use, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import Spinner from "../components/ui/Spinner";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import Spinner from "../components/ui/Spinner";
 
@@ -73,7 +72,7 @@ const SignIn = () => {
                     icon: "success",
                     title: "Sign In Success!",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                 });
                 navigate(`${location.state ? location.state : '/'}`)
 
@@ -96,30 +95,39 @@ const SignIn = () => {
             .then(result => {
                 setUser(result.user);
                 navigate(`${location.state ? location.state : '/'}`)
-                toast.success('successfully login with google')
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Sign In Success!",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
             })
             .catch(error => {
                 const errorMessage = error.message;
-                toast.error(errorMessage || 'Something went wrong!');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: errorMessage || 'Something went wrong!'
+                });
             })
     }
 
     return (
-        <div className="mt-16 min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
+        <div className="mt-16 max-w-5xl py-10 md:py-20 mx-auto flex flex-col md:flex-row">
             <title>Roomly | User SignIn</title>
             {/* Left Column Image */}
-            <div className="flex-1 flex items-center justify-center p-4">
+            <div className="flex-1 flex items-center justify-center p-4 w-11/12 lg:w-full mx-auto">
                 <DotLottieReact
                     src="https://lottie.host/adbe480f-f24b-4292-838b-a4f74294f37e/FrK9Ai3HLB.lottie"
                     loop
                     autoplay
-                    style={{ width: '100%', maxWidth: '550px' }}
                 />
             </div>
 
             {/* Right Column (Form) */}
-            <div className="flex-1 w-full flex items-center justify-center p-8">
-                <div className="w-full max-w-md border-2  p-10 rounded-lg border-secondary/30 shadow-md">
+            <div className="flex-1 w-full flex items-center justify-center p-4 md:p-8">
+                <div className="w-full max-w-md border-2 p-4 md:p-6 lg:p-8 rounded-lg border-secondary/30 shadow-md">
                     <h2 className="text-3xl font-bold mb-6 text-center">Sign In</h2>
 
                     <form
@@ -135,6 +143,7 @@ const SignIn = () => {
                                 name="email"
                                 placeholder="you@example.com"
                                 className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                                onFocus={() => setError('')}
                             />
                         </div>
 
@@ -147,16 +156,18 @@ const SignIn = () => {
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
-                                    placeholder="Ype Your Password"
-                                    className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+                                    placeholder="Type Your Password"
+                                    className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary pr-10"
+                                    // autoComplete="current-password"
+                                    onFocus={() => setError('')}
                                 />
-                                <button
+                                <p
                                     type="button"
                                     onClick={togglePasswordVisibility}
-                                    className="absolute inset-y-0 right-3 flex items-center text-secondary focus:outline-none"
+                                    className="absolute inset-y-0 z-10 right-3 flex items-center text-secondary"
                                 >
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                </button>
+                                </p>
                             </div>
                         </div>
                         {/* show error message */}
