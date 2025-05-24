@@ -39,38 +39,47 @@ const NavBar = () => {
 
   // Signout user
   const handleSignOut = () => {
+
+    // Swal.fire({
+    //   title: "Are you sure?",
+    //   text: "You won't be able to revert this!",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Yes, delete it!"
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire({
+    //       title: "Deleted!",
+    //       text: "Your file has been deleted.",
+    //       icon: "success"
+    //     });
+    //   }
+    // });
+
+
+    signOutUser()
     Swal.fire({
-      title: "Are you sure you want to log out?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Log Out",
-      cancelButtonText: "Cancel",
-      reverseButtons: true,
-      focusCancel: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        signOutUser()
-          .then(() => {
-            navigate('/')
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Log Out Successful!",
-              showConfirmButton: false,
-              timer: 1500
-            });
-          })
-          .catch(error => {
-            const errorMessage = error.message;
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: errorMessage || 'Something went wrong!',
-            });
-          });
-      }
-    });
+      position: "center",
+      icon: "success",
+      title: "Log Out Successful!",
+      showConfirmButton: false,
+      timer: 1500
+    })
+      .then(() => {
+        navigate('/')
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: errorMessage || 'Something went wrong!',
+        });
+      });
   }
+
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
