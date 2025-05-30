@@ -1,6 +1,8 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { use, useEffect, useState } from "react";
 import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaMoon, FaSun } from "react-icons/fa";
+import {  MdSunny, MdWbSunny } from "react-icons/md";
+import { IoMoon } from "react-icons/io5";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
@@ -39,46 +41,32 @@ const NavBar = () => {
 
   // Signout user
   const handleSignOut = () => {
-
-    // Swal.fire({
-    //   title: "Are you sure?",
-    //   text: "You won't be able to revert this!",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes, delete it!"
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire({
-    //       title: "Deleted!",
-    //       text: "Your file has been deleted.",
-    //       icon: "success"
-    //     });
-    //   }
-    // });
-
-
-    signOutUser()
     Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Log Out Successful!",
-      showConfirmButton: false,
-      timer: 1500
-    })
-      .then(() => {
-        navigate('/')
-      })
-      .catch(error => {
-        const errorMessage = error.message;
+      title: 'Are you sure?',
+      text: 'You will be logged out of your account.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3C65F5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, log out',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        signOutUser();
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: errorMessage || 'Something went wrong!',
-        });
-      });
-  }
+          position: 'center',
+          icon: 'success',
+          title: 'Sign Out Successful!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+          .then(() => {
+            navigate('/');
+          });
+      }
+
+    });
+  };
 
 
   const toggleTheme = () => {
@@ -123,7 +111,7 @@ const NavBar = () => {
             aria-label="Toggle dark mode"
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
-            {theme === 'light' ? <FaMoon className="text-lg" /> : <FaSun className="text-lg" />}
+            {theme === 'light' ? <IoMoon  className="text-lg" /> : <MdSunny  className="text-lg" />}
           </button>
           {/* signup, signin, user photo nav right - tablet - desktop */}
           {!user ? (
@@ -174,7 +162,7 @@ const NavBar = () => {
             aria-label="Toggle dark mode"
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
-            {theme === 'light' ? <FaMoon className="text-lg" /> : <FaSun className="text-lg" />}
+            {theme === 'light' ? <FaMoon className="text-lg" /> : <MdWbSunny  className="text-lg" />}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
