@@ -14,6 +14,7 @@ import UpdateRoommateInfo from "../pages/UpdateRoommateInfo";
 import MyProfile from "../pages/MyProfile";
 import Privacy from "../pages/Privacy";
 import TermsCondition from "../pages/TermsCondition";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 
 const router = createBrowserRouter([
@@ -79,6 +80,13 @@ const router = createBrowserRouter([
 
         ]
 
+    },
+    {
+        path: '/dashboard',
+        Component: DashboardLayout,
+        children: [
+
+         ]
     },
     {
         path: '*',

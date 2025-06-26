@@ -35,7 +35,7 @@ const FeaturedRoommates = () => {
         </p>
       </Slide>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {roommates.map(mate => (
           <Slide direction="up" delay={300} duration={1000} triggerOnce><FeaturedCard key={mate._id} mate={mate} /></Slide>
 

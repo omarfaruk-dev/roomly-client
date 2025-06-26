@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { use, useEffect, useState } from "react";
-import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaMoon, FaSun } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaMoon } from "react-icons/fa";
 import {  MdSunny, MdWbSunny } from "react-icons/md";
 import { IoMoon } from "react-icons/io5";
 import { AuthContext } from "../context/AuthContext";
