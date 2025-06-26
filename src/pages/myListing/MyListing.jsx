@@ -51,14 +51,14 @@ const MyListing = () => {
     };
 
     return (
-        <div className="max-w-7xl min-h-[calc(100vh-300px)] mx-auto mt-16 px-4 py-10 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 py-10 md:py-20">
             <title>My Roommate Listing | Roomly</title>
             <Fade>
                 <h2 className="text-center text-2xl text-primary md:text-3xl font-bold mb-10">
                     My <span className="text-secondary">Room/Roommate</span> Listings
                 </h2>
             </Fade>
-
+ 
             {myListings.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16">
                     <DotLottieReact
@@ -109,7 +109,7 @@ const MyListing = () => {
 
                                         <td className="px-4 py-3 border-b border-secondary/10 text-center space-y-1 lg:space-y-0 space-x-2">
                                             <Link
-                                                to={`/update-roommate/${item._id}`}
+                                                to={`/dashboard/update-roommate/${item._id}`}
                                                 className="btn btn-xs md:btn-sm btn-outline btn-primary"
                                             >
                                                 <FaEdit className="mr-1" /> Edit

@@ -1,21 +1,15 @@
 import { use } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { FaBackward, FaUser } from "react-icons/fa";
-import { Link, useNavigate } from "react-router";
+import { FaUser } from "react-icons/fa";
+// import { Link, useNavigate } from "react-router";
 
 const MyProfile = () => {
     const { user } = use(AuthContext);
     console.log(user.displayName);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     return (
         <div className="mt-16 py-10 md:py-20 px-4 sm:px-6 lg:px-8 max-w-lg mx-auto">
             <title>{user.displayName}</title>
-            <Link
-                className="mb-6 flex items-center gap-2 text-secondary hover:text-primary font-medium transition-colors"
-                onClick={() => navigate(-1)}
-            >
-                <FaBackward/> Back
-            </Link>
             <div className=" py-10 px-4 md:px-6 bg-secondary/5 rounded-md shadow-md border border-secondary/20">
                 <div className="flex flex-col items-center gap-4">
                     {user?.photoURL ? (

@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { use, useEffect, useState } from "react";
 import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaMoon } from "react-icons/fa";
-import {  MdSunny, MdWbSunny } from "react-icons/md";
+import { MdSunny, MdWbSunny } from "react-icons/md";
 import { IoMoon } from "react-icons/io5";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
@@ -80,7 +80,12 @@ const NavBar = () => {
       <NavLink to="/" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Home</NavLink>
       <NavLink to="/add-roommate" className=" md:px-2 lg:px-3 py-2 block text-primary font-medium hover:text-secondary" onClick={handleMobileMenuClose}>Add To Find Roommate</NavLink>
       <NavLink to="/browse-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Browse Listing</NavLink>
-      <NavLink to="/my-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>My Listing</NavLink>
+      {
+        user &&
+        <>
+          <NavLink to="/dashboard" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Dashboard</NavLink>
+        </>
+      }
     </>
   );
 
@@ -111,7 +116,7 @@ const NavBar = () => {
             aria-label="Toggle dark mode"
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
-            {theme === 'light' ? <IoMoon  className="text-lg" /> : <MdSunny  className="text-lg" />}
+            {theme === 'light' ? <IoMoon className="text-lg" /> : <MdSunny className="text-lg" />}
           </button>
           {/* signup, signin, user photo nav right - tablet - desktop */}
           {!user ? (
@@ -141,7 +146,7 @@ const NavBar = () => {
       transform z-50">
                 <p className="px-4 py-2 font-medium text-primary">{user.displayName}</p>
                 <hr className="border-t border-secondary/30" />
-                <NavLink to='/my-profile' className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
+                <NavLink to='dashboard/my-profile' className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
                   <FaUserCircle /> Profile
                 </NavLink>
                 <Link
@@ -162,7 +167,7 @@ const NavBar = () => {
             aria-label="Toggle dark mode"
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
-            {theme === 'light' ? <FaMoon className="text-lg" /> : <MdWbSunny  className="text-lg" />}
+            {theme === 'light' ? <FaMoon className="text-lg" /> : <MdWbSunny className="text-lg" />}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

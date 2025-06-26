@@ -64,7 +64,7 @@ const UpdateRoommateInfo = () => {
     }
 
     return (
-        <div className="mt-16 max-w-4xl mx-auto px-4 py-10 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 py-10 md:py-20">
             {/* Top Bar: Back | Title | View All */}
             <div className='flex justify-between items-center py-5'>
                 <button onClick={() => navigate(-1)} to='/' className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
