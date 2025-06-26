@@ -92,7 +92,7 @@ const AddRoommateForm = () => {
     };
 
     return (
-        <div className="mt-16 max-w-4xl mx-auto px-4 py-10 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 py-10 md:py-20 z-10">
             <title>Add New Roommate List | Roomly</title>
             <div className='flex justify-between items-center py-5'>
                 <button onClick={()=>navigate(-1)} className="flex btn btn-secondary btn-outline btn-sm text-sm font-medium">
@@ -309,7 +309,7 @@ const AddRoommateForm = () => {
             </form>
             </Fade>
             
-            <SafetyTrust/>
+            {/* <SafetyTrust/> */}
         </div>
     );
 };

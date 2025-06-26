@@ -71,7 +71,7 @@ const MyListing = () => {
                     <p className="text-accent text-lg mb-6 text-center max-w-md">You haven't added any room or roommate listings yet. Start by creating your first listing to find your perfect match!</p>
                     <Link
                         to="/add-roommate"
-                        className="btn btn-secondary btn-lg px-8 py-3 font-semibold shadow hover:scale-105 transition-all duration-200"
+                        className="btn btn-secondary px-8 py-3 font-semibold shadow transition-all duration-200"
                     >
                         + Add New Listing
                     </Link>

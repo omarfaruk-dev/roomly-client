@@ -42,10 +42,10 @@ const router = createBrowserRouter([
             //     path: '/my-profile',
             //     element: <PrivateRoutes><MyProfile/></PrivateRoutes>
             // },
-            {
-                path: '/add-roommate',
-                element: <PrivateRoutes><AddRoommate /></PrivateRoutes>
-            },
+            // {
+            //     path: '/add-roommate',
+            //     element: <PrivateRoutes><AddRoommate /></PrivateRoutes>
+            // },
             // {
             //     path: '/update-roommate/:id',
             //     hydrateFallbackElement: <Spinner />,
@@ -93,6 +93,10 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <Spinner />,
                 loader: () => fetch('https://roomly-server.vercel.app/roommates'), 
                 Component: MyListing,
+            },
+            {
+                path: 'add-roommate',
+                Component: AddRoommate,
             },
             {
                 path: 'update-roommate/:id',

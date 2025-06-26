@@ -78,7 +78,7 @@ const NavBar = () => {
   const navLinks = (
     <>
       <NavLink to="/" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Home</NavLink>
-      <NavLink to="/add-roommate" className=" md:px-2 lg:px-3 py-2 block text-primary font-medium hover:text-secondary" onClick={handleMobileMenuClose}>Add To Find Roommate</NavLink>
+      <NavLink to="/dashboard/add-roommate" className=" md:px-2 lg:px-3 py-2 block text-primary font-medium hover:text-secondary" onClick={handleMobileMenuClose}>Add To Find Roommate</NavLink>
       <NavLink to="/browse-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Browse Listing</NavLink>
       {
         user &&
