@@ -1,9 +1,7 @@
 import { FaHome, FaListUl, FaPlus, FaPlusCircle, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link, NavLink, Outlet, useLoaderData, useLocation, useNavigate } from "react-router";
-import { AuthContext } from "../context/AuthContext";
 import Lottie from "lottie-react";
 import welcome from "../assets/lotties/welcom-lottie.json";
-import { use } from "react";
 import {
     BarChart,
     Bar,
@@ -15,9 +13,11 @@ import {
     Legend
 } from "recharts";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const DashboardLayout = () => {
-    const { user, signOutUser } = use(AuthContext);
+    // const { user, signOutUser } = use(AuthContext);
+    const { user, signOutUser } = useAuth();
     const roommatesData = useLoaderData();
     // Example stats from API data
     const myListings = Array.isArray(roommatesData)
@@ -39,7 +39,7 @@ const DashboardLayout = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const isDashboardHome = location.pathname === "/dashboard";
+    const isDashboardHome = location?.pathname === "/dashboard";
 
     // Signout user
     const handleSignOut = () => {
@@ -75,7 +75,6 @@ const DashboardLayout = () => {
         const drawer = document.getElementById('roomly-drawer');
         if (drawer && window.innerWidth < 1024) drawer.checked = false;
     };
-
     return (
         <div className="max-w-[1440px] mx-auto drawer lg:drawer-open min-h-screen">
             <input id="roomly-drawer" type="checkbox" className="drawer-toggle" />
@@ -126,15 +125,13 @@ const DashboardLayout = () => {
                             />
                         </Link>
                     </div>
-                    {/* <div className="mx-2 flex-1 px-2 text-lg font-bold">
-                        Roomly Dashboard
-                    </div> */}
+                   
                 </div>
                 {/* Main content */}
                 <div className="p-4 flex-1">
                     {isDashboardHome && (
                         <>
-                            {/* Welcome message with Lottie animation */}
+                           
                             <div className="flex flex-col md:flex-row items-center gap-4 mb-8 animate-fade-in">
                                 <div className="w-30 md:w-80 ">
                                     <Lottie animationData={welcome} loop={true} />
