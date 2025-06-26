@@ -16,6 +16,7 @@ import Privacy from "../pages/Privacy";
 import TermsCondition from "../pages/TermsCondition";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyListing from "../pages/myListing/MyListing";
+import AboutUs from "../pages/AboutUs";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 Component: SignUp,
+            },
+            {
+                path: '/about-us',
+                Component: AboutUs,
             },
             // {
             //     path: '/my-profile',
