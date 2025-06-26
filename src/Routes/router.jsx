@@ -17,6 +17,7 @@ import TermsCondition from "../pages/TermsCondition";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyListing from "../pages/myListing/MyListing";
 import AboutUs from "../pages/AboutUs";
+import Contact from "../context/Contact";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/about-us',
                 Component: AboutUs,
+            },
+            {
+                path: 'contact',
+                Component: Contact,
             },
             // {
             //     path: '/my-profile',

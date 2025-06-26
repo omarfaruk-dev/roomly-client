@@ -87,6 +87,7 @@ const NavBar = () => {
         </>
       }
        <NavLink to="/about-us" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>About Us</NavLink>
+       <NavLink to="/contact" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Contact Us</NavLink>
       
     </>
   );
