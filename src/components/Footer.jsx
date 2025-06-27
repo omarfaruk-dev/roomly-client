@@ -26,8 +26,8 @@ const Footer = () => {
                     <ul className="space-y-1">
                         <li><Link to="/" className="hover:text-secondary">Home</Link></li>
                         <li><Link to="/browse-listing" className="hover:text-secondary">Browse Listings</Link></li>
-                        <li><Link to="/add-roommate" className="hover:text-secondary">Add Roommate</Link></li>
-                        <li><Link to="/my-listing" className="hover:text-secondary">My Listings</Link></li>
+                        <li><Link to="/about-us" className="hover:text-secondary">About Us</Link></li>
+                        <li><Link to="/contact" className="hover:text-secondary">Contact Us</Link></li>
                     </ul>
                 </div>
                 {/* Social Media Section */}

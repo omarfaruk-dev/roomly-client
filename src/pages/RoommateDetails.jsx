@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import { RiThumbUpFill, RiThumbUpLine } from 'react-icons/ri';
+import HowItWorks from '../components/HowItWorks';
 
 
 const RoommateDetails = () => {
@@ -202,6 +203,7 @@ const RoommateDetails = () => {
                     </div>
                 </div>
             )}
+            <HowItWorks/>
         </div>
     );
 };

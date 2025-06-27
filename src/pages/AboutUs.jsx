@@ -2,7 +2,7 @@
 import communityImg from '../assets/slider/1.jpg'
 const AboutUs = () => {
     return (
-        <section className="flex mt-16 flex-col items-center justify-center bg-gradient-to-br from-secondary/10 via-base-100 to-base-200 py-16 px-4">
+        <section className="flex mt-16 flex-col items-center justify-center  py-16 px-4">
             <div className="max-w-4xl w-full text-center">
                 <h1 className="text-2xl md:text-3xl font-extrabold text-primary mb-4 tracking-tight">
                     About <span className="text-secondary">Roomly</span>

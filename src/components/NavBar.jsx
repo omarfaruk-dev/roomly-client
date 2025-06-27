@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { use, useEffect, useState } from "react";
 import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaMoon } from "react-icons/fa";
-import { MdSunny, MdWbSunny } from "react-icons/md";
+import { MdDashboardCustomize, MdSunny, MdWbSunny } from "react-icons/md";
 import { IoMoon } from "react-icons/io5";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
@@ -78,17 +78,10 @@ const NavBar = () => {
   const navLinks = (
     <>
       <NavLink to="/" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Home</NavLink>
-      <NavLink to="/dashboard/add-roommate" className=" md:px-2 lg:px-3 py-2 block text-primary font-medium hover:text-secondary" onClick={handleMobileMenuClose}>Add To Find Roommate</NavLink>
       <NavLink to="/browse-listing" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Browse Listing</NavLink>
-      {
-        user &&
-        <>
-          <NavLink to="/dashboard" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Dashboard</NavLink>
-        </>
-      }
-       <NavLink to="/about-us" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>About Us</NavLink>
-       <NavLink to="/contact" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Contact Us</NavLink>
-      
+      <NavLink to="/about-us" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>About Us</NavLink>
+      <NavLink to="/contact" className=" md:px-2 lg:px-3 py-2 block font-medium text-primary hover:text-secondary" onClick={handleMobileMenuClose}>Contact Us</NavLink>
+
     </>
   );
 
@@ -149,6 +142,9 @@ const NavBar = () => {
       transform z-50">
                 <p className="px-4 py-2 font-medium text-primary">{user.displayName}</p>
                 <hr className="border-t border-secondary/30" />
+                <NavLink to='/dashboard' className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
+                  <MdDashboardCustomize /> Dashboard
+                </NavLink>
                 <NavLink to='dashboard/my-profile' className="flex items-center hover:text-secondary gap-2 px-4 py-2 text-primary w-full text-left">
                   <FaUserCircle /> Profile
                 </NavLink>
@@ -202,7 +198,8 @@ const NavBar = () => {
           ) : (
             <div className="border-t border-secondary/30 pt-5 px-3 space-y-3 mt-2">
               {/* <p className="font-medium">{user?.displayName}</p> */}
-              <NavLink to='/my-profile' className="flex items-center gap-2 text-primary w-full" onClick={handleMobileMenuClose}>
+              {/* <NavLink to='/dashboard' className="py-1 block font-medium text-secondary" onClick={handleMobileMenuClose}>Dashboard</NavLink> */}
+              <NavLink to='/dashboard/my-profile' className="flex items-center gap-2 text-primary w-full" onClick={handleMobileMenuClose}>
                 {user?.photoURL && showUserPhotoMobile ? (
                   <img src={user.photoURL} alt={user.displayName || "User"} className="w-10 h-10 border p-1 border-secondary rounded-full" onError={() => setShowUserPhotoMobile(false)} />
                 ) : (
@@ -210,6 +207,10 @@ const NavBar = () => {
                 )}
                 {user?.displayName}
               </NavLink>
+              <NavLink to="/dashboard" className="flex items-center gap-2 " onClick={handleMobileMenuClose}>
+                <MdDashboardCustomize /> Dashboard
+              </NavLink>
+
               <Link
                 onClick={() => { handleSignOut(); handleMobileMenuClose(); }}
                 className="flex items-center gap-2 text-primary w-full"
