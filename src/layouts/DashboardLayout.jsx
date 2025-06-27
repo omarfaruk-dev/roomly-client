@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 // import Stats from "../components/Stats";
 import Lottie from "lottie-react";
-import { ImStatsBars } from "react-icons/im";
+// import { ImStatsBars } from "react-icons/im";
 import welcome from "../../src/assets/lotties/welcom-lottie.json";
 
 const DashboardLayout = () => {
@@ -130,7 +130,7 @@ const DashboardLayout = () => {
                         <img src="/logo-small.png" alt="Roomly Logo" className="h-8 w-8" />
                         <span className="text-xl font-bold">ROOMLY</span>
                     </Link>
-                    <ul className="menu flex-1 bg-transparent text-base-content p-4 md:text-base font-medium">
+                    <ul className="menu flex-1 bg-transparent text-base-content space-y-3 p-4 md:text-base font-medium">
                         <li>
                             <NavLink to="/dashboard" end onClick={closeDrawer}>
                                 <FaHome className="inline-block mr-2" />
@@ -155,12 +155,12 @@ const DashboardLayout = () => {
                                 My Profile
                             </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink to="/dashboard/stats" onClick={closeDrawer}>
                                 <ImStatsBars  className="inline-block mr-2" />
                                 Statistic
                             </NavLink>
-                        </li>
+                        </li> */}
                         {/* Add more private route links here */}
                         <li className="mt-auto">
                             <button

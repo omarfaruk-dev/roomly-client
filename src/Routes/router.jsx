@@ -95,12 +95,12 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://roomly-server.vercel.app/roommates/${params.id}`),
                 Component: UpdateRoommateInfo,
             },
-            {
-                path: 'stats',
-                hydrateFallbackElement: <Spinner />,
-                loader: () => fetch('https://roomly-server.vercel.app/roommates'),
-                Component: Stats,
-            },
+            // {
+            //     path: 'stats',
+            //     hydrateFallbackElement: <Spinner />,
+            //     loader: () => fetch('https://roomly-server.vercel.app/roommates'),
+            //     Component: Stats,
+            // },
             {
                 path: 'my-profile',
                 Component: MyProfile,
