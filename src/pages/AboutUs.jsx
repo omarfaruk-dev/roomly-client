@@ -1,4 +1,3 @@
-
 import communityImg from '../assets/slider/1.jpg'
 const AboutUs = () => {
     return (
@@ -29,45 +28,45 @@ const AboutUs = () => {
 
                 {/* Stories & Testimonials Section */}
                 <div className="mt-20 max-w-5xl mx-auto">
-                    <h2 className="text-2xl font-bold text-secondary mb-6 text-center">Roomly Stories</h2>
+                    <h2 className="text-2xl font-bold text-secondary mb-10 text-center">Roomly Stories</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {/* Card 1 */}
-                        <div className="relative bg-gradient-to-br from-primary/10 to-white rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-primary/40 hover:scale-105 transition-transform">
+                        <div className="relative bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-primary/40 hover:scale-105 transition-transform">
                             <span className="absolute -top-5 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow">Success Story</span>
                             <h4 className="font-semibold text-primary mb-2 mt-4">From Strangers to Friends</h4>
                             <p className="text-accent mb-2">“I moved to a new city for work and didn’t know anyone. Thanks to Roomly, I found a roommate who’s now my closest friend. We even started a book club together!”</p>
                             <span className="text-xs text-secondary font-semibold">— Jamie, Marketing Analyst</span>
                         </div>
                         {/* Card 2 */}
-                        <div className="relative bg-gradient-to-br from-secondary/10 to-white rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-secondary/40 hover:scale-105 transition-transform">
+                        <div className="relative bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-secondary/40 hover:scale-105 transition-transform">
                             <span className="absolute -top-5 left-4 bg-secondary text-white px-3 py-1 rounded-full text-xs font-semibold shadow">Success Story</span>
                             <h4 className="font-semibold text-secondary mb-2 mt-4">A Safe Start for Students</h4>
                             <p className="text-accent mb-2">“As an international student, safety was my top concern. Roomly’s verification and support made my transition smooth and stress-free.”</p>
                             <span className="text-xs text-secondary font-semibold">— Minh, University Student</span>
                         </div>
                         {/* Card 3 */}
-                        <div className="relative bg-gradient-to-br from-accent/10 to-white rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-accent/40 hover:scale-105 transition-transform">
+                        <div className="relative bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-accent/40 hover:scale-105 transition-transform">
                             <span className="absolute -top-5 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold shadow">User Review</span>
                             <h4 className="font-semibold text-accent mb-2 mt-4">Stress-Free Roommate Search</h4>
                             <p className="italic text-accent mb-2">“Roomly made finding a roommate so easy and stress-free. I found my best friend here!”</p>
                             <span className="text-xs text-primary font-semibold">— Sarah, Student</span>
                         </div>
                         {/* Card 4 */}
-                        <div className="relative bg-gradient-to-br from-primary/5 to-white rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-primary/20 hover:scale-105 transition-transform">
+                        <div className="relative bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 shadow-md p-6 flex flex-col items-start border-t-4 border-primary/20 hover:scale-105 transition-transform">
                             <span className="absolute -top-5 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow">User Review</span>
                             <h4 className="font-semibold text-primary mb-2 mt-4">Peace of Mind</h4>
                             <p className="italic text-accent mb-2">“The verification process gave me peace of mind. Highly recommend Roomly!”</p>
                             <span className="text-xs text-primary font-semibold">— Alex, Young Professional</span>
                         </div>
                         {/* Card 5 */}
-                        <div className="relative bg-gradient-to-br from-secondary/5 to-white rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-secondary/20 hover:scale-105 transition-transform">
+                        <div className="relative bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-secondary/20 hover:scale-105 transition-transform">
                             <span className="absolute -top-5 left-4 bg-secondary text-white px-3 py-1 rounded-full text-xs font-semibold shadow">User Review</span>
                             <h4 className="font-semibold text-secondary mb-2 mt-4">Community Vibes</h4>
                             <p className="italic text-accent mb-2">“I love the community vibe and support. Roomly is more than just a platform.”</p>
                             <span className="text-xs text-primary font-semibold">— Priya, Graduate</span>
                         </div>
                         {/* Card 6 */}
-                        <div className="relative bg-gradient-to-br from-accent/5 to-white rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-accent/20 hover:scale-105 transition-transform">
+                        <div className="relative bg-gradient-to-br from-secondary/30 via-base-100 to-secondary/10 rounded-md shadow-md p-6 flex flex-col items-start border-t-4 border-accent/20 hover:scale-105 transition-transform">
                             <span className="absolute -top-5 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold shadow">User Review</span>
                             <h4 className="font-semibold text-accent mb-2 mt-4">Easy & Fast Process</h4>
                             <p className="italic text-accent mb-2">“I found a great roommate within days. The process was so easy and the filters helped me find exactly what I needed!”</p>
