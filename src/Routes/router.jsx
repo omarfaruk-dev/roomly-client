@@ -18,6 +18,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MyListing from "../pages/myListing/MyListing";
 import AboutUs from "../pages/AboutUs";
 import Contact from "../context/Contact";
+import Stats from "../components/Stats";
 
 
 const router = createBrowserRouter([
@@ -48,20 +49,6 @@ const router = createBrowserRouter([
                 path: 'contact',
                 Component: Contact,
             },
-            // {
-            //     path: '/my-profile',
-            //     element: <PrivateRoutes><MyProfile/></PrivateRoutes>
-            // },
-            // {
-            //     path: '/add-roommate',
-            //     element: <PrivateRoutes><AddRoommate /></PrivateRoutes>
-            // },
-            // {
-            //     path: '/update-roommate/:id',
-            //     hydrateFallbackElement: <Spinner />,
-            //     loader: ({ params }) => fetch(`https://roomly-server.vercel.app/roommates/${params.id}`),
-            //     element: <UpdateRoommateInfo />
-            // },
             {
                 path: '/roommate-details/:id',
                 hydrateFallbackElement: <Spinner />,
@@ -74,12 +61,6 @@ const router = createBrowserRouter([
                 loader: () => fetch('https://roomly-server.vercel.app/roommates'),
                 Component: BrowseListings,
             },
-            // {
-            //     path: '/my-listing',
-            //     hydrateFallbackElement: <Spinner />,
-            //     loader: () => fetch('https://roomly-server.vercel.app/roommates'),
-            //     element: <PrivateRoutes><MyListing /></PrivateRoutes>
-            // },
             {
                 path: '/privacy-policy',
                 Component: Privacy,
@@ -94,8 +75,8 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        hydrateFallbackElement: <Spinner />,
-        loader: () => fetch('https://roomly-server.vercel.app/roommates'),
+        // hydrateFallbackElement: <Spinner />,
+        // loader: () => fetch('https://roomly-server.vercel.app/roommates'),
         element: <PrivateRoutes><DashboardLayout /></PrivateRoutes>,
         children: [
             {
@@ -113,6 +94,12 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <Spinner />,
                 loader: ({ params }) => fetch(`https://roomly-server.vercel.app/roommates/${params.id}`),
                 Component: UpdateRoommateInfo,
+            },
+            {
+                path: 'stats',
+                hydrateFallbackElement: <Spinner />,
+                loader: () => fetch('https://roomly-server.vercel.app/roommates'),
+                Component: Stats,
             },
             {
                 path: 'my-profile',

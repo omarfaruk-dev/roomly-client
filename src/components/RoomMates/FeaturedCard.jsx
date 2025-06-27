@@ -32,10 +32,6 @@ const FeaturedCard = ({ mate }) => {
           <FaMapMarkerAlt className="text-secondary" />
           {location}
         </p>
-        {/* <p className="mb-2 text-sm text-accent">
-          {description.length > 50 ? description.substring(0, 100) + "..." : description}
-        </p> */}
-        {/* <p className="mb-2 text-sm text-accent">{description.trim(0, 50)}</p> */}
 
         <div className="flex flex-wrap gap-2 mb-3">
           {preferences.map((pref, i) => (

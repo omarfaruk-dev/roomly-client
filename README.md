@@ -9,8 +9,8 @@ Live website: [https://roomly-app.netlify.app](https://roomly-app.netlify.app)
 Roomly is a modern web application for finding and listing roommates and rooms, designed for trust, privacy, and real connections. Built with **React, React Router, Tailwind CSS, DaisyUI, Firebase, Express, and MongoDB**. Roomly offers a seamless, professional, and accessible experience for users seeking safe and compatible living arrangements.
 
 ## Related Repositories
-- **Client-side:** [Roomly Client Side Repo](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev)
-- **Server-side:** [Roomly Server Side Repo](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-omarfaruk-dev)
+- **Client-side:** [Roomly Client Side Repo](https://github.com/omarfaruk-dev/roomly-client.git)
+- **Server-side:** [Roomly Server Side Repo](https://github.com/omarfaruk-dev/roomly-server.git)
 
 ## Key Features
 - Browse and search roommate/room listings

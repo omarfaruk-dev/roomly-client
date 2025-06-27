@@ -1,44 +1,16 @@
-import { FaHome, FaListUl, FaPlus, FaPlusCircle, FaSignOutAlt, FaUser } from "react-icons/fa";
-import { Link, NavLink, Outlet, useLoaderData, useLocation, useNavigate } from "react-router";
-import Lottie from "lottie-react";
-import welcome from "../assets/lotties/welcom-lottie.json";
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    Tooltip,
-    ResponsiveContainer,
-    CartesianGrid,
-    Legend
-} from "recharts";
+import { FaHome, FaListUl, FaPlusCircle, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+// import Stats from "../components/Stats";
+import Lottie from "lottie-react";
+import { ImStatsBars } from "react-icons/im";
+import welcome from "../../src/assets/lotties/welcom-lottie.json";
 
 const DashboardLayout = () => {
-    // const { user, signOutUser } = use(AuthContext);
     const { user, signOutUser } = useAuth();
-    const roommatesData = useLoaderData();
-    // Example stats from API data
-    const myListings = Array.isArray(roommatesData)
-        ? roommatesData.filter(r => r.email === user?.email).length
-        : (roommatesData.email === user?.email ? 1 : 0);
-    const activeRoommates = Array.isArray(roommatesData)
-        ? roommatesData.filter(r => r.availability === "available").length
-        : roommatesData.availability === "available" ? 1 : 0;
-    const pendingRequests = Array.isArray(roommatesData)
-        ? roommatesData.filter(r => r.availability === "pending").length
-        : roommatesData.availability === "pending" ? 1 : 0;
-
-    // Prepare data for the graph
-    const chartData = [
-        { name: "My Listings", value: myListings },
-        { name: "Active", value: activeRoommates },
-        { name: "Pending", value: pendingRequests }
-    ];
-
     const navigate = useNavigate();
-    const location = useLocation();
+    // const location = useLocation();
     const isDashboardHome = location?.pathname === "/dashboard";
 
     // Signout user
@@ -125,13 +97,13 @@ const DashboardLayout = () => {
                             />
                         </Link>
                     </div>
-                   
+
                 </div>
                 {/* Main content */}
                 <div className="p-4 flex-1">
+                    {/* Dashboard home page default content */}
                     {isDashboardHome && (
                         <>
-                           
                             <div className="flex flex-col md:flex-row items-center gap-4 mb-8 animate-fade-in">
                                 <div className="w-30 md:w-80 ">
                                     <Lottie animationData={welcome} loop={true} />
@@ -139,35 +111,6 @@ const DashboardLayout = () => {
                                 <div className="flex-1 text-center md:text-left">
                                     <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">Welcome, {user?.displayName || "User"}!</h2>
                                     <p className="text-accent text-lg">Here's a quick overview of your dashboard stats.</p>
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                                <div className="bg-secondary/5 rounded-lg shadow p-5 flex flex-col items-center">
-                                    <span className="text-2xl font-bold text-primary">{myListings}</span>
-                                    <span className="text-accent mt-1">My Listings</span>
-                                </div>
-                                <div className="bg-secondary/5 rounded-lg shadow p-5 flex flex-col items-center">
-                                    <span className="text-2xl font-bold text-primary">{activeRoommates}</span>
-                                    <span className="text-accent mt-1">Active Roommates</span>
-                                </div>
-                                <div className="bg-secondary/5 rounded-lg shadow p-5 flex flex-col items-center">
-                                    <span className="text-2xl font-bold text-primary">{pendingRequests}</span>
-                                    <span className="text-accent mt-1">Pending Requests</span>
-                                </div>
-                            </div>
-                            <div className="bg-secondary/5 rounded-lg shadow p-5 mb-8">
-                                <div className="text-lg font-semibold mb-2 text-primary">Listings Overview</div>
-                                <div className="w-full h-60 flex items-center justify-center text-accent/60">
-                                    <ResponsiveContainer width="100%" height={200}>
-                                        <BarChart data={chartData}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="name" />
-                                            <YAxis allowDecimals={false} />
-                                            <Tooltip />
-                                            <Legend />
-                                            <Bar dataKey="value" fill="#6366f1" radius={[6, 6, 0, 0]} />
-                                        </BarChart>
-                                    </ResponsiveContainer>
                                 </div>
                             </div>
                         </>
@@ -210,6 +153,12 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/my-profile" onClick={closeDrawer}>
                                 <FaUser className="inline-block mr-2" />
                                 My Profile
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/dashboard/stats" onClick={closeDrawer}>
+                                <ImStatsBars  className="inline-block mr-2" />
+                                Statistic
                             </NavLink>
                         </li>
                         {/* Add more private route links here */}

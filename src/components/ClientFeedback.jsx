@@ -4,7 +4,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FaStar, FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { Slide } from "react-awesome-reveal";
 
 const testimonials = [
@@ -68,7 +68,7 @@ const testimonials = [
 
 const TestimonialSlider = () => {
     return (
-        <div className="py-10 md:py-20 lg:py-30 px-4 max-w-7xl mx-auto px-4 text-center">
+        <div className="py-10 md:py-20 lg:py-30 max-w-7xl mx-auto px-4 text-center">
             <Slide direction="left" delay={300} duration={1000}>
                 <h2 className="text-3xl text-primary md:text-4xl font-bold mb-2">
                     What Our <span className="text-secondary">Customers Are Saying</span>
