@@ -1,4 +1,4 @@
-# ROOMLY
+# ROOMLY - A Roommate Finder Web App
 
 ![Roomly Responsive UI Screenshot](public/responsive.jpg)
 
@@ -40,7 +40,7 @@ Roomly is a modern web application for finding and listing roommates and rooms, 
 ## Getting Started
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-omarfaruk-dev
+   git clone https://github.com/omarfaruk-dev/roomly-client.git
    cd roomly-client
    ```
 2. **Install dependencies:**
